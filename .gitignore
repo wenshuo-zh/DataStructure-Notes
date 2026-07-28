@@ -58,6 +58,33 @@ compile_commands.json
 *.bak
 *.swp
 
+# Visual Studio
+.vs/
+x64/
+Debug/
+*.idb
+*.ipch
+*.tlog
+*.lastbuildstate
+*.suo
+*.recipe
+*.vcxproj.user
+DocumentLayout.json
+DocumentLayout.backup.json
+Solution.VC.db
+Browse.VC.db
+Browse.VC.opendb
+Browse.VC.db-shm
+Browse.VC.db-wal
+CopilotIndices/
+
+# OneNote
+*.onetoc2
+
+# Large media files (recordings)
+录像/
+
+
 # vcpkg
 vcpkg_installed/
 
