@@ -9,7 +9,7 @@ typedef struct Node {
 //头节点，极其重要，只能由他找到后面的数据
 //虚头节点-创建一个节点，用来连接所有数据
 //正真需要的数据-虚头节点的下一项
-Node* creatList(int n) {
+Node* createList(int n) {
 	//创建一个长度为n的链表
 
 	//1.创建虚头节点，用于连接数据
@@ -30,19 +30,28 @@ Node* creatList(int n) {
 		//temp = p;
 		temp = temp->next;
 	}
-	Node* realHead = dummyHead->next;
+	Node* realHead;
+	realHead = dummyHead->next;
 	delete dummyHead;
 	return realHead;
 }
 
-void printList(Node* head) {
-	cout << "链表为：";
+void outputList(Node* head) {
+	cout << "输出链表：" << endl;
 	Node* temp = head;
 	while (temp) {
 		cout << temp->val << " ";
 		temp = temp->next;
 	}
 	cout << endl;
+}
+
+void inputList(Node*& head) {
+	int n;
+	cout << "请输入链表的长度n：";
+	cin >> n;
+	cout << "请输入" << n << "个数据：" << endl;
+	head = createList(n);
 }
 
 void freeList(Node* head)
@@ -57,12 +66,9 @@ void freeList(Node* head)
 }
 
 int main() {
-	int n;
-	cout << "请输入链表的长度：";
-	cin >> n;
-	cout << "输入" << n << "个数据：" << endl;
-	Node* list = creatList(n);
-	printList(list);
+	Node* list = nullptr;
+	inputList(list);
+	outputList(list);
 	freeList(list);
 	return 0;
 }
