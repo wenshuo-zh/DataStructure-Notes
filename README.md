@@ -57,9 +57,20 @@
 
 ---
 
+## 项目结构
+
+```
+LinkedList/
+├── SingleList/          # 单链表（当前主力）
+│   ├── SingleList.sln
+│   └── *.cpp            # 力扣题 + 基础演示
+└── DoublyLinkedList/    # 双向链表（新建）
+    ├── DoublyLinkedList.sln
+    └── *.cpp
+```
+
 ## 环境
 
 - **IDE**: Visual Studio 2022 (v143)
 - **语言**: C++17
-- **编译**: Debug x64，每次只编译一个 `.cpp`（每个文件都有独立的 `main` 或 `Solution` 类）
 - **远程**: [GitHub](https://github.com/wenshuo-zh/DataStructure-Notes)
