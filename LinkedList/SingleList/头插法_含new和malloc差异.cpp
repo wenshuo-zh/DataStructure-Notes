@@ -1,34 +1,27 @@
 #include<iostream>
 using namespace std;
 
-typedef struct Node {
+struct Node {
 	int val;
 	Node* next;
-}Node;
-//链表只能从前一项找后一项
-//头节点，极其重要，只能由他找到后面的数据
-//虚头节点-创建一个节点，用来连接所有数据
-//正真需要的数据-虚头节点的下一项
-Node* creatList(int n) {
-	//创建一个长度为n的链表
+};
 
-	//1.创建虚头节点，用于连接数据
+//new和malloc区别
+//malloc-free是c语言库函数，new-delete是运算符 
+//malloc需要指定开辟空间的大小，new不需要
+//malloc只负责开辟空间，new不仅可以开辟内存，还可以初始化
+//malloc返回值是空指针void* 需要强制类型转化，new返回值是对应类型的指针
+//malloc开辟空间失败返回空指针，需要手动判断，new会抛出异常
+
+//头插法
+Node* createList(int n) {
 	Node* dummyHead = new Node;
-	//Node* dummyhead1 = (Node*)malloc(sizeof(Node));
 	dummyHead->next = nullptr;
-	//尾插法需要记录尾部数据.
-	Node* temp = dummyHead;
 	while (n--) {
-		//2.创建节点
-		//2.1创建一个节点并输入数据
 		Node* p = new Node;
 		cin >> p->val;
-		//2.2链接到链表上
-		temp->next = p;
-		p->next = nullptr;
-		//p是最后一项
-		//temp = p;
-		temp = temp->next;
+		p->next = dummyHead->next;
+		dummyHead->next = p;
 	}
 	Node* realHead = dummyHead->next;
 	delete dummyHead;
@@ -59,7 +52,7 @@ int main() {
 	cout << "请输入链表的长度：";
 	cin >> n;
 	cout << "输入" << n << "个数据：" << endl;
-	Node* list = creatList(n);
+	Node* list = createList(n);
 	printList(list);
 	freeList(list);
 	return 0;
