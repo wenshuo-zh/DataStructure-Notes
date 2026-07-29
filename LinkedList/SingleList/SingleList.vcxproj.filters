@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="19删除链表的第n个节点_快慢指针.cpp">
+    <ClCompile Include="19删除链表的倒数第n个节点_快慢指针.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="尾插法_虚头节点.cpp">
@@ -31,6 +31,18 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="2两数相加.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="021删除链表的倒数第n个节点.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="203移除链表元素.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="141环形链表.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="83删除排序链表中重复元素.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

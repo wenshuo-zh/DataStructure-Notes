@@ -9,15 +9,9 @@ struct ListNode {
 class Solution {
 public:
     bool hasCycle(ListNode* head) {
-     /*   ListNode* sign = new ListNode(1);
-        sign->next = head;
-        while (sign) {
-            if(sign->val==sign)
-            sign->val++;
-        }*/
-
-        ListNode* fast = head, * slow = head->next;
         if (!head)return false;
+        ListNode* fast = head->next, * slow = head;
+        
         while (fast && fast->next) {
             if (slow == fast) return true;
             slow = slow->next;
