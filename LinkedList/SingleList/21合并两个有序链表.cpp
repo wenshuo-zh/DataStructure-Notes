@@ -1,3 +1,5 @@
+#include<iostream>
+using namespace std;
 
 struct ListNode {
     int val;
@@ -10,6 +12,23 @@ struct ListNode {
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        
+        ListNode* dummyHead = new ListNode;
+        ListNode* newList = dummyHead;
+
+        while (list1 && list2) {
+            if (list1->val < list2->val) {
+                newList->next = list1;
+                list1 = list1->next;
+            }
+            else {
+                newList->next = list2;
+                list2 = list2->next;
+            }
+            newList = newList->next;
+        }
+
+        newList->next = list1 == nullptr ? list2 : list1;
+
+        return dummyHead->next;
     }
-};  
+};

@@ -4,52 +4,83 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Personal C++ data structures practice repository. Content is in Chinese (comments, variable names, output messages). Currently focused on linked lists, with plans to expand to other data structures.
+Personal C++ data structures practice repo. Content is in Chinese (comments, variable names, `cout` messages). Currently focused on singly linked lists — expanding to other structures over time.
+
+Remote: `https://github.com/wenshuo-zh/DataStructure-Notes.git`
 
 ## Build System
 
-- **Environment**: Visual Studio 2022, Windows 11, v143 toolset
-- **Solution**: Open `LinkedList/SingleList/SingleList.sln` in VS 2022
-- **Build**: Debug x64 (default). Each `.cpp` in the project is a self-contained exercise with its own `main()` — only one should be compiled at a time. Exclude the others from build before compiling.
-- **Output**: `x64/Debug/SingleList.exe`
+- **Environment**: Visual Studio 2022, Windows 11, v143 toolset (C++17+)
+- **Solution**: `LinkedList/SingleList/SingleList.sln`
+- **Configuration**: Debug x64 (default); Release x64 also available
+- **Critical**: Every `.cpp` file in the project defines its own `main()` (or `struct ListNode` + `class Solution`). **Only one `.cpp` file can be compiled at a time.** To switch exercises in VS: right-click the unwanted `.cpp` files → Properties → "Excluded From Build" → Yes. Keep only the one you want active.
+- **Build output**: `LinkedList/SingleList/x64/Debug/SingleList.exe`
 
 ## Repository Structure
 
 ```
 .gitignore                  # VS/C++ build artifacts, .vs/, x64/, *.ipch, etc.
-01 26.7.26/                 # Deprecated — being migrated to LinkedList/
-02 26.7.28/                 # Deprecated — being migrated to LinkedList/
-LinkedList/SingleList/      # Active project — single linked list exercises
+LinkedList/SingleList/      # Active project — singly linked list exercises
+  SingleList.sln            # VS solution — open this
+  SingleList.vcxproj        # MSBuild project (v143, console app, Debug/Release x64+Win32)
+  *.cpp                     # Self-contained exercises (one per LeetCode problem)
 回放/                       # Screen recordings (.vep), not tracked in git
 ```
 
 ## Coding Conventions
 
-### Old exercises (deprecated, in `01`/`02` directories)
-- C-style `struct Node { int val; Node* next; }` with `typedef`
-- Pattern: `createList(n)` → `printList(head)` → `freeList(head)`
-- Uses dummy head node + tail pointer for tail insert; dummy head for head insert
-- Allocates with `new`, deallocates with `delete`
+**文件名带数字题号的就是力扣题**，遵循 LeetCode 风格；不带的（如头插法、尾插法）是基础操作演示，保留 C 风格即可。
 
-### Current exercises (in `LinkedList/SingleList/`)
-- LeetCode-style `struct ListNode` with constructors:
-  ```cpp
-  struct ListNode {
-      int val;
-      ListNode *next;
-      ListNode() : val(0), next(nullptr) {}
-      ListNode(int x) : val(x), next(nullptr) {}
-      ListNode(int x, ListNode *next) : val(x), next(next) {}
-  };
-  ```
-- Logic encapsulated in a `class Solution` with public methods
-- I/O is separate from the algorithm (LeetCode pattern: function takes input, returns result)
+### 力扣题（文件名含题号，如 `876链表的中间节点.cpp`）
 
-### Shared conventions
-- `#include<iostream>` and `using namespace std;` at the top of every file
-- Chinese comments (`// 快指针先走n步`) and Chinese `cout` messages
-- `new`/`delete` for heap allocation (not `malloc`/`free`)
+```cpp
+#include<iostream>
+using namespace std;
 
-## Migration In Progress
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
 
-The repo is transitioning from flat dated folders (`01 26.7.26/`, `02 26.7.28/`) to a structure organized by data structure type (`LinkedList/SingleList/`). Old `.cpp` files are being rewritten into the new project. When adding new exercises, place them in the appropriate data structure subdirectory within `LinkedList/SingleList/`.
+class Solution {
+public:
+    ReturnType methodName(ListNode* head, ...) {
+        // 算法逻辑
+    }
+};
+
+int main() {
+    // 本地测试：创建输入 → 调用 Solution → 打印结果
+}
+```
+
+- `struct ListNode` 三构造函式（LeetCode 标准）
+- 算法逻辑封装在 `class Solution` 中
+- `main()` 只用于本地测试 I/O
+- 包含 `#include<iostream>` 和 `using namespace std;`
+
+### 基础操作演示（文件名不含题号，如 `头插法_含new和malloc差异.cpp`）
+
+- C 风格 `struct Node { int val; Node* next; }`，可带 `typedef`
+- `createList()` / `printList()` / `freeList()` + `main()` 自驱动
+- 保留教学注释（如 `new` vs `malloc` 的区别）
+- 同样用 `new`/`delete`，不用 `malloc`/`free`
+
+### 共用规则
+
+- 中文注释解释算法步骤
+- 中文 `cout` 输出
+- 虚头节点 (dummy head) 简化边界处理
+
+## Notes
+
+- The `.vcxproj` file lists registered `.cpp` files. When adding a new exercise:
+  1. Add the `.cpp` to `LinkedList/SingleList/`
+  2. In VS: right-click Source Files → Add → Existing Item, or manually edit the `.vcxproj` `<ClCompile>` list
+  3. Exclude all other `.cpp` files from build so only the new one compiles
+- `021删除链表的倒数第n个节点.cpp` exists on disk but is not registered in the `.vcxproj` — likely a work-in-progress or duplicate of `19删除链表的倒数第n个节点_快慢指针.cpp`
+- Encoding: files contain GBK/GB2312-encoded Chinese characters. Open with the correct encoding in editors outside VS.
+- **README.md**: Must be kept in sync. When a new exercise is added or an existing one is completed, update `README.md` — add the entry to its category table, update the progress count, and add any new technique to the "常用技巧总结" section. The README is organized by data structure category (链表, 二叉树, etc.) with sub-groups by technique (快慢指针, 合并/运算, etc.).

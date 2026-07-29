@@ -6,14 +6,14 @@ struct Node {
 	Node* next;
 };
 
-//newºÍmallocÇø±ð
-//malloc-freeÊÇcÓïÑÔ¿âº¯Êý£¬new-deleteÊÇÔËËã·û 
-//mallocÐèÒªÖ¸¶¨¿ª±Ù¿Õ¼äµÄ´óÐ¡£¬new²»ÐèÒª
-//mallocÖ»¸ºÔð¿ª±Ù¿Õ¼ä£¬new²»½ö¿ÉÒÔ¿ª±ÙÄÚ´æ£¬»¹¿ÉÒÔ³õÊ¼»¯
-//malloc·µ»ØÖµÊÇ¿ÕÖ¸Õëvoid* ÐèÒªÇ¿ÖÆÀàÐÍ×ª»¯£¬new·µ»ØÖµÊÇ¶ÔÓ¦ÀàÐÍµÄÖ¸Õë
-//malloc¿ª±Ù¿Õ¼äÊ§°Ü·µ»Ø¿ÕÖ¸Õë£¬ÐèÒªÊÖ¶¯ÅÐ¶Ï£¬new»áÅ×³öÒì³£
+//newå’Œmallocçš„åŒºåˆ«
+//malloc-freeæ˜¯cè¯­è¨€åº“å‡½æ•°ï¼Œnew-deleteæ˜¯è¿ç®—ç¬¦
+//mallocéœ€è¦æŒ‡å®šå¼€è¾Ÿç©ºé—´çš„å¤§å°ï¼Œnewä¸éœ€è¦
+//mallocåªè´Ÿè´£å¼€è¾Ÿç©ºé—´ï¼Œnewé™¤äº†å¯ä»¥å¼€è¾Ÿå†…å­˜ï¼Œè¿˜å¯ä»¥åˆå§‹åŒ–
+//mallocè¿”å›žå€¼æ˜¯ç©ºæŒ‡é’ˆvoid* ï¼Œéœ€è¦å¼ºåˆ¶ç±»åž‹è½¬æ¢ï¼›newè¿”å›žå€¼æ˜¯å¯¹åº”ç±»åž‹çš„æŒ‡é’ˆ
+//mallocå¼€è¾Ÿç©ºé—´å¤±è´¥è¿”å›žç©ºæŒ‡é’ˆï¼Œéœ€è¦æ‰‹åŠ¨åˆ¤æ–­ï¼›newä¼šæŠ›å‡ºå¼‚å¸¸
 
-//Í·²å·¨
+//å¤´æ’æ³•
 Node* createList(int n) {
 	Node* dummyHead = new Node;
 	dummyHead->next = nullptr;
@@ -29,7 +29,7 @@ Node* createList(int n) {
 }
 
 void printList(Node* head) {
-	cout << "Á´±íÎª£º";
+	cout << "é“¾è¡¨ä¸ºï¼š";
 	Node* temp = head;
 	while (temp) {
 		cout << temp->val << " ";
@@ -49,9 +49,9 @@ void freeList(Node* head)
 }
 int main() {
 	int n;
-	cout << "ÇëÊäÈëÁ´±íµÄ³¤¶È£º";
+	cout << "è¯·è¾“å…¥é“¾è¡¨çš„é•¿åº¦ï¼š";
 	cin >> n;
-	cout << "ÊäÈë" << n << "¸öÊý¾Ý£º" << endl;
+	cout << "è¯·è¾“å…¥" << n << "ä¸ªæ•°æ®ï¼š" << endl;
 	Node* list = createList(n);
 	printList(list);
 	freeList(list);

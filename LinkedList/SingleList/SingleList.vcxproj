@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="19删除链表的第n个节点_快慢指针.cpp" />
     <ClCompile Include="21合并两个有序链表.cpp" />
+    <ClCompile Include="2两数相加.cpp" />
     <ClCompile Include="头插法_含new和malloc差异.cpp" />
     <ClCompile Include="尾插法_虚头节点.cpp" />
     <ClCompile Include="876链表的中间节点.cpp" />

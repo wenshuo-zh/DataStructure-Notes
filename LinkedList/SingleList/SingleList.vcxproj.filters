@@ -30,5 +30,8 @@
     <ClCompile Include="21合并两个有序链表.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="2两数相加.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
