@@ -31,12 +31,11 @@ LinkedList/SingleList/      # Active project — singly linked list exercises
 
 **文件名带数字题号的就是力扣题**，遵循 LeetCode 风格；不带的（如头插法、尾插法）是基础操作演示，保留 C 风格即可。
 
-### 力扣题（文件名含题号，如 `876链表的中间节点.cpp`）
+### 力扣题（文件名含题号，如 `203移除链表元素.cpp`）
+
+**只写算法，可直接粘贴到 LeetCode 提交。不要 `#include`、不要 `using namespace`、不要 `main()`、不要 `delete` 释放内存。**
 
 ```cpp
-#include<iostream>
-using namespace std;
-
 struct ListNode {
     int val;
     ListNode *next;
@@ -51,16 +50,11 @@ public:
         // 算法逻辑
     }
 };
-
-int main() {
-    // 本地测试：创建输入 → 调用 Solution → 打印结果
-}
 ```
 
-- `struct ListNode` 三构造函式（LeetCode 标准）
-- 算法逻辑封装在 `class Solution` 中
-- `main()` 只用于本地测试 I/O
-- 包含 `#include<iostream>` 和 `using namespace std;`
+- 只有 `struct ListNode` + `class Solution`，其余一律不加
+- 中文注释可以保留
+- 不释放 `dummyHead`（LeetCode 会统一管理内存）
 
 ### 基础操作演示（文件名不含题号，如 `头插法_含new和malloc差异.cpp`）
 

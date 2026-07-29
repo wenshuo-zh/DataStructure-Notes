@@ -1,24 +1,18 @@
-#include<iostream>
-using namespace std;
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
 
-
-
- struct ListNode {
-      int val;
-      ListNode *next;
-     ListNode() : val(0), next(nullptr) {}
-      ListNode(int x) : val(x), next(nullptr) {}
-      ListNode(int x, ListNode *next) : val(x), next(next) {}
-  };
- 
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-      
         ListNode* fast = head, * slow = head;
         while (fast && fast->next)
-        //&&µÄÂß¼­¶ÌÂ·Ð§Ó¦
-        //&&×ó±ßÎª¼Ù£¬ÓÒ±ß²»»áÖ´ÐÐ£º·ÀÖ¹nextÒÑ¾­ÊÇnullptr£¬next->nextÖ¸ÏòÒ°Ö¸Õë
+        // && æ˜¯é€»è¾‘çŸ­è·¯æ•ˆåº”
+        // && å·¦è¾¹ä¸ºå‡ï¼Œå³è¾¹ä¸ä¼šæ‰§è¡Œï¼Œé˜²æ­¢ next å·²ç»æ˜¯ nullptr æ—¶ next->next è®¿é—®é‡ŽæŒ‡é’ˆ
         {
             fast = fast->next->next;
             slow = slow->next;

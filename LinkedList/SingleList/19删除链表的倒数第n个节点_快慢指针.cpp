@@ -1,14 +1,10 @@
-#include<iostream>
-using namespace std;
-
-
- struct ListNode {
-      int val;
-      ListNode *next;
-      ListNode() : val(0), next(nullptr) {}
-      ListNode(int x) : val(x), next(nullptr) {}
-      ListNode(int x, ListNode *next) : val(x), next(next) {}
-  };
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
 
 class Solution {
 public:
@@ -17,17 +13,17 @@ public:
         dummyHead->next = head;
         ListNode* fast = head;
         ListNode* slow = dummyHead;
-        //¿ìÂýÖ¸ÕëÖÐ¼ä²în¸ö½Úµã
-        //¿ìÖ¸Õë´ÓheadÏÈ×ßn²½
+        // å¿«æ…¢æŒ‡é’ˆä¸­é—´éš” n ä¸ªèŠ‚ç‚¹
+        // å¿«æŒ‡é’ˆä»Ž head å¾€åŽèµ° n æ­¥
         while (n--) {
             fast = fast->next;
         }
-        //¿ìÖ¸Õë×ßµ½nullptrÊ±£¬ÂýÖ¸ÕëÍ£µ½ÐèÒªµÄÎ»ÖÃÉÏ
+        // å¿«æŒ‡é’ˆèµ°åˆ° nullptr æ—¶ï¼Œæ…¢æŒ‡é’ˆåœåœ¨è¦åˆ é™¤èŠ‚ç‚¹çš„å‰ä¸€ä¸ª
         while (fast) {
             fast = fast->next;
             slow = slow->next;
         }
-        //slowÍ£ÔÚ±»É¾Êý¾ÝµÄÇ°Ò»Ïî
+        // slow åœåœ¨è¢«åˆ èŠ‚ç‚¹çš„å‰ä¸€ä¸ª
         slow->next = slow->next->next;
         return dummyHead->next;
     }

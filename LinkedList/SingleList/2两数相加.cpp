@@ -1,6 +1,3 @@
-#include<iostream>
-using namespace std;
-
 struct ListNode {
     int val;
     ListNode *next;
@@ -12,17 +9,22 @@ struct ListNode {
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        // l1, l2 全是非空
-        ListNode* dummyHead = new ListNode;
-        dummyHead->next = nullptr;
-        ListNode* list = dummyHead;
-        while (l1 && l2) {
-            bool IsCarry = false;
-            list->val = l1->val + l2->val;
-            if (list->val >= 10) {
-                list->val -= 10;
-                IsCarry = true;
-            }
+        ListNode* dummyHead = new ListNode(0);
+        ListNode* tail = dummyHead;
+        bool IsCarry = false;
+
+        while (l1 || l2 || IsCarry) {
+            int sum = IsCarry ? 1 : 0;
+            if (l1) { sum += l1->val; l1 = l1->next; }
+            if (l2) { sum += l2->val; l2 = l2->next; }
+
+            IsCarry = (sum >= 10);
+            if (IsCarry) sum -= 10;
+
+            tail->next = new ListNode(sum);
+            tail = tail->next;
         }
+
+        return dummyHead->next;
     }
 };
