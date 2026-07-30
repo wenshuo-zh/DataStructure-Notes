@@ -4,26 +4,51 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Personal C++ data structures practice repo. Content is in Chinese (comments, variable names, `cout` messages). Currently focused on singly linked lists — expanding to other structures over time.
+Personal C++ data structures practice repo. Content is in Chinese (comments, variable names, `cout` messages). Active projects: singly linked lists (SingleList), stack & queue (Stack-Queue). DoublyLinkedList is scaffolded but empty.
 
 Remote: `https://github.com/wenshuo-zh/DataStructure-Notes.git`
 
 ## Build System
 
 - **Environment**: Visual Studio 2022, Windows 11, v143 toolset (C++17+)
-- **Solution**: `LinkedList/SingleList/SingleList.sln`
+- **Solutions**: One VS solution per data structure:
+  - `LinkedList/SingleList/SingleList.sln` — singly linked list exercises
+  - `LinkedList/DoublyLinkedList/DoublyLinkedList.sln` — doubly linked list (no exercises yet)
+  - `Stack-Queue/Stack.sln` — stack exercises
+  - `Stack-Queue/Queue/Queue.sln` — queue exercises
 - **Configuration**: Debug x64 (default); Release x64 also available
-- **Critical**: Every `.cpp` file in the project defines its own `main()` (or `struct ListNode` + `class Solution`). **Only one `.cpp` file can be compiled at a time.** To switch exercises in VS: right-click the unwanted `.cpp` files → Properties → "Excluded From Build" → Yes. Keep only the one you want active.
-- **Build output**: `LinkedList/SingleList/x64/Debug/SingleList.exe`
+- **Critical**: Every `.cpp` file in a project defines its own `main()`. **Only one `.cpp` file can be compiled at a time.** To switch exercises in VS: right-click the unwanted `.cpp` files → Properties → "Excluded From Build" → Yes. Keep only the one you want active.
+- **Build output**: `<ProjectDir>/x64/Debug/<ProjectName>.exe`
+
+### Building from CLI (MSBuild)
+
+```cmd
+# From the project directory (e.g., LinkedList/SingleList/):
+msbuild SingleList.sln /p:Configuration=Debug /p:Platform=x64
+
+# Or use Developer PowerShell (VS 2022):
+MSBuild.exe Stack.sln /t:Build /p:Configuration=Debug
+```
 
 ## Repository Structure
 
 ```
 .gitignore                  # VS/C++ build artifacts, .vs/, x64/, *.ipch, etc.
-LinkedList/SingleList/      # Active project — singly linked list exercises
+LinkedList/SingleList/      # Singly linked list exercises (active)
   SingleList.sln            # VS solution — open this
   SingleList.vcxproj        # MSBuild project (v143, console app, Debug/Release x64+Win32)
   *.cpp                     # Self-contained exercises (one per LeetCode problem)
+LinkedList/DoublyLinkedList/ # Doubly linked list (scaffold only — no .cpp files yet)
+  DoublyLinkedList.sln
+  DoublyLinkedList.vcxproj
+Stack-Queue/                # Stack & queue exercises (active)
+  Stack.sln                 # VS solution for stack
+  Stack.vcxproj
+  *.cpp                     # Stack exercises (栈.cpp, 用栈实现链表头插法.cpp)
+  Queue/                    # Queue sub-project
+    Queue.sln               # VS solution for queue
+    Queue.vcxproj
+    *.cpp                   # Queue exercises (队列.cpp, deque双端队列.cpp)
 回放/                       # Screen recordings (.vep), not tracked in git
 ```
 
@@ -63,6 +88,14 @@ public:
 - 保留教学注释（如 `new` vs `malloc` 的区别）
 - 同样用 `new`/`delete`，不用 `malloc`/`free`
 
+### Stack-Queue 项目（`Stack-Queue/` 目录）
+
+- `Stack.sln` 管理栈相关 `.cpp`，`Queue/Queue.sln` 管理队列相关 `.cpp`
+- 基础演示保留 `#include` + `using namespace std`（如 `栈.cpp`、`队列.cpp`）
+- 使用 STL 容器（`std::stack`、`std::queue`、`std::deque`）或自建结构
+- 文件名如含"链表"或"头插法"字样说明是用栈/队列操作链表
+- 同样遵守"每次只编译一个 `.cpp`"规则
+
 ### 共用规则
 
 - 中文注释解释算法步骤
@@ -72,9 +105,11 @@ public:
 ## Notes
 
 - The `.vcxproj` file lists registered `.cpp` files. When adding a new exercise:
-  1. Add the `.cpp` to `LinkedList/SingleList/`
+  1. Add the `.cpp` to the appropriate project directory
   2. In VS: right-click Source Files → Add → Existing Item, or manually edit the `.vcxproj` `<ClCompile>` list
   3. Exclude all other `.cpp` files from build so only the new one compiles
-- `021删除链表的倒数第n个节点.cpp` exists on disk but is not registered in the `.vcxproj` — likely a work-in-progress or duplicate of `19删除链表的倒数第n个节点_快慢指针.cpp`
+- `021删除链表的倒数第n个节点.cpp` exists on disk in `SingleList/` but is not registered in the `.vcxproj` — likely a work-in-progress or duplicate of `19删除链表的倒数第n个节点_快慢指针.cpp`
+- `206反转链表.cpp` — uses 头插法 to reverse; categorized as "反转链表" in README
+- `141环形链表.cpp` has `#include<bits/stdc++.h>` (convention violation — should be removed per 力扣题 rules)
 - Encoding: files contain GBK/GB2312-encoded Chinese characters. Open with the correct encoding in editors outside VS.
 - **README.md**: Must be kept in sync. When a new exercise is added or an existing one is completed, update `README.md` — add the entry to its category table, update the progress count, and add any new technique to the "常用技巧总结" section. The README is organized by data structure category (链表, 二叉树, etc.) with sub-groups by technique (快慢指针, 合并/运算, etc.).

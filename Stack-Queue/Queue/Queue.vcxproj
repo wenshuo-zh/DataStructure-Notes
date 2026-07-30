@@ -18,24 +18,11 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="021删除链表的倒数第n个节点.cpp" />
-    <ClCompile Include="023相交链表.cpp" />
-    <ClCompile Include="141环形链表.cpp" />
-    <ClCompile Include="19删除链表的倒数第n个节点_快慢指针.cpp" />
-    <ClCompile Include="206反转链表.cpp" />
-    <ClCompile Include="21合并两个有序链表.cpp" />
-    <ClCompile Include="2两数相加.cpp" />
-    <ClCompile Include="83删除排序链表中重复元素.cpp" />
-    <ClCompile Include="头插法_含new和malloc差异.cpp" />
-    <ClCompile Include="尾插法_虚头节点.cpp" />
-    <ClCompile Include="876链表的中间节点.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{7a6a9335-21ee-4f3e-91ca-181716c25391}</ProjectGuid>
-    <RootNamespace>SingleList</RootNamespace>
+    <ProjectGuid>{695af5d8-ff78-467c-b901-a3e4f16dc739}</ProjectGuid>
+    <RootNamespace>Queue</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -135,6 +122,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="deque双端队列.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

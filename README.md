@@ -10,8 +10,9 @@
 | 链表 - 双指针 | 1 | 160 |
 | 链表 - 合并/运算 | 2 | 21、2 |
 | 链表 - 删除节点 | 2 | 203、83 |
+| 链表 - 反转链表 | 1 | 206 |
 
-**力扣：8 题**
+**力扣：9 题**
 
 ---
 
@@ -45,6 +46,12 @@
 | [203](https://leetcode.cn/problems/remove-linked-list-elements/) | 移除链表元素 | `203移除链表元素.cpp` | 虚头节点 + 单指针判断 `temp->next`，删除后不动、没删才后移 |
 | [83](https://leetcode.cn/problems/remove-duplicates-from-sorted-list/) | 删除排序链表中的重复元素 | `83删除排序链表中重复元素.cpp` | 排序链表去重不需虚头，直接比较 `temp->val` 和 `temp->next->val` |
 
+### 反转链表
+
+| 题号 | 题目 | 文件 | 技巧 |
+|------|------|------|------|
+| [206](https://leetcode.cn/problems/reverse-linked-list/) | 反转链表 | `206反转链表.cpp` | 头插法反转：遍历原链表，逐个创建新节点插入虚头之后 |
+
 ### 合并 / 运算
 
 | 题号 | 题目 | 文件 | 技巧 |
@@ -61,6 +68,7 @@
 | **虚头节点 (Dummy Head)** | 简化头节点边界处理，避免判空 | 全部题目 |
 | **快慢指针** | 找中点、找倒数第 k 个、判环 | 876、19、141 |
 | **尾指针** | 尾插法构建链表，O(1) 追加 | 尾插法、21 |
+| **头插法反转** | 遍历原链表，逐个摘下节点插入新链表头部 | 206 |
 
 ---
 
@@ -71,9 +79,15 @@ LinkedList/
 ├── SingleList/          # 单链表（当前主力）
 │   ├── SingleList.sln
 │   └── *.cpp            # 力扣题 + 基础演示
-└── DoublyLinkedList/    # 双向链表（新建）
+└── DoublyLinkedList/    # 双向链表（新建，暂无题目）
     ├── DoublyLinkedList.sln
     └── *.cpp
+Stack-Queue/              # 栈和队列
+├── Stack.sln              # VS 栈项目
+├── *.cpp                  # 栈基础演示 + 应用题
+└── Queue/                 # 队列子项目
+    ├── Queue.sln          # VS 队列项目
+    └── *.cpp              # 队列基础演示 + 应用题
 ```
 
 ## 环境
