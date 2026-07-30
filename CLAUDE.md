@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Personal C++ data structures practice repo. Content is in Chinese (comments, variable names, `cout` messages). Active projects: singly linked lists (SingleList), stack & queue (Stack-Queue). DoublyLinkedList is scaffolded but empty.
+Personal C++ data structures practice repo. Content is in Chinese (comments, variable names, `cout` messages). Active projects: singly linked lists (SingleList), stack & queue (Stack-Queue), vector/array (Array(vector)). DoublyLinkedList is scaffolded but empty.
 
 Remote: `https://github.com/wenshuo-zh/DataStructure-Notes.git`
 
@@ -16,6 +16,7 @@ Remote: `https://github.com/wenshuo-zh/DataStructure-Notes.git`
   - `LinkedList/DoublyLinkedList/DoublyLinkedList.sln` — doubly linked list (no exercises yet)
   - `Stack-Queue/Stack.sln` — stack exercises
   - `Stack-Queue/Queue/Queue.sln` — queue exercises
+  - `Array(vector)/Array(vector).sln` — vector/array exercises (LeetCode 118 杨辉三角)
 - **Configuration**: Debug x64 (default); Release x64 also available
 - **Critical**: Every `.cpp` file in a project defines its own `main()`. **Only one `.cpp` file can be compiled at a time.** To switch exercises in VS: right-click the unwanted `.cpp` files → Properties → "Excluded From Build" → Yes. Keep only the one you want active.
 - **Build output**: `<ProjectDir>/x64/Debug/<ProjectName>.exe`
@@ -49,6 +50,10 @@ Stack-Queue/                # Stack & queue exercises (active)
     Queue.sln               # VS solution for queue
     Queue.vcxproj
     *.cpp                   # Queue exercises (队列.cpp, deque双端队列.cpp)
+Array(vector)/              # Vector/array exercises (active)
+  Array(vector).sln         # VS solution — open this
+  Array(vector).vcxproj
+  *.cpp                     # vector.cpp (基础演示), 118杨辉三角.cpp (WIP)
 回放/                       # Screen recordings (.vep), not tracked in git
 ```
 
@@ -96,6 +101,12 @@ public:
 - 文件名如含"链表"或"头插法"字样说明是用栈/队列操作链表
 - 同样遵守"每次只编译一个 `.cpp`"规则
 
+### Array(vector) 项目（`Array(vector)/` 目录）
+
+- 使用 STL `std::vector`，基础演示保留 `#include` + `using namespace std` + `main()`
+- 力扣题（如 `118杨辉三角.cpp`）同样按力扣规范：只有 `class Solution`，不放 `#include`/`main()`
+- 教学注释注明 API 用法（如 `push_back`、`insert`、`erase`、`at` vs `[]` 的区别等）
+
 ### 共用规则
 
 - 中文注释解释算法步骤
@@ -110,6 +121,7 @@ public:
   3. Exclude all other `.cpp` files from build so only the new one compiles
 - `021删除链表的倒数第n个节点.cpp` exists on disk in `SingleList/` but is not registered in the `.vcxproj` — likely a work-in-progress or duplicate of `19删除链表的倒数第n个节点_快慢指针.cpp`
 - `206反转链表.cpp` — uses 头插法 to reverse; categorized as "反转链表" in README
+- `118杨辉三角.cpp` — two implementations (push_back and resize); has `#include<bits/stdc++.h>` (力扣题 convention violation, same as 141)
 - `141环形链表.cpp` has `#include<bits/stdc++.h>` (convention violation — should be removed per 力扣题 rules)
 - Encoding: files contain GBK/GB2312-encoded Chinese characters. Open with the correct encoding in editors outside VS.
 - **README.md**: Must be kept in sync. When a new exercise is added or an existing one is completed, update `README.md` — add the entry to its category table, update the progress count, and add any new technique to the "常用技巧总结" section. The README is organized by data structure category (链表, 二叉树, etc.) with sub-groups by technique (快慢指针, 合并/运算, etc.).
