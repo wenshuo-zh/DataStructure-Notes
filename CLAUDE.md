@@ -146,5 +146,7 @@ public:
 - `206反转链表.cpp` — uses 头插法 to reverse; categorized as "反转链表" in README
 - `118杨辉三角.cpp` — two implementations (push_back and resize); has `#include<bits/stdc++.h>` (力扣题 convention violation, same as 141)
 - `141环形链表.cpp` has `#include<bits/stdc++.h>` (convention violation — should be removed per 力扣题 rules)
+- `225用队列实现栈.cpp` — in Queue project, dual-queue approach (push O(n), pop O(1))
+- `232用栈实现队列.cpp` — in Stack project, dual-stack `inStack`/`outStack` approach (均摊 O(1))
 - Encoding: files contain GBK/GB2312-encoded Chinese characters. Open with the correct encoding in editors outside VS.
 - **README.md**: Must be kept in sync. When a new exercise is added or an existing one is completed, update `README.md` — add the entry to its category table, update the progress count, and add any new technique to the "常用技巧总结" section. The README is organized by data structure category (链表, 二叉树, etc.) with sub-groups by technique (快慢指针, 合并/运算, etc.).
