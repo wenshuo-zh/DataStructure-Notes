@@ -23,13 +23,34 @@ Remote: `https://github.com/wenshuo-zh/DataStructure-Notes.git`
 
 ### Building from CLI (MSBuild)
 
+Each project has its own `.sln` in a different subdirectory. Run from the project directory:
+
 ```cmd
-# From the project directory (e.g., LinkedList/SingleList/):
+# SingleList (LinkedList\SingleList\):
 msbuild SingleList.sln /p:Configuration=Debug /p:Platform=x64
 
-# Or use Developer PowerShell (VS 2022):
-MSBuild.exe Stack.sln /t:Build /p:Configuration=Debug
+# DoublyLinkedList (LinkedList\DoublyLinkedList\):
+msbuild DoublyLinkedList.sln /p:Configuration=Debug /p:Platform=x64
+
+# Stack (Stack-Queue\):
+msbuild Stack.sln /p:Configuration=Debug /p:Platform=x64
+
+# Queue (Stack-Queue\Queue\):
+msbuild Queue.sln /p:Configuration=Debug /p:Platform=x64
+
+# Array(vector) (Array(vector)\):
+msbuild "Array(vector).sln" /p:Configuration=Debug /p:Platform=x64
 ```
+
+Or from repo root with full paths:
+
+```cmd
+msbuild LinkedList\SingleList\SingleList.sln /p:Configuration=Debug /p:Platform=x64
+```
+
+### Adding a new .cpp file (outside VS)
+
+When adding a `.cpp` file without Visual Studio, you must manually edit the `.vcxproj` file — add a `<ClCompile Include="新文件.cpp" />` entry inside the existing `<ItemGroup>` that contains the other `<ClCompile>` entries. VS would do this automatically via "Add → Existing Item", but CLI users must edit the XML directly.
 
 ## Repository Structure
 
@@ -119,7 +140,9 @@ public:
   1. Add the `.cpp` to the appropriate project directory
   2. In VS: right-click Source Files → Add → Existing Item, or manually edit the `.vcxproj` `<ClCompile>` list
   3. Exclude all other `.cpp` files from build so only the new one compiles
-- `021删除链表的倒数第n个节点.cpp` exists on disk in `SingleList/` but is not registered in the `.vcxproj` — likely a work-in-progress or duplicate of `19删除链表的倒数第n个节点_快慢指针.cpp`
+- `021删除链表的倒数第n个节点.cpp` — duplicate of `19` (same problem, different approach). Registered in `.vcxproj` but likely a WIP variant
+- `203移除链表元素.cpp` exists on disk in `SingleList/` but is **not registered** in the `.vcxproj` — needs to be added if you want to compile it
+- `023相交链表.cpp` — this is actually LeetCode **160** (相交链表). The filename uses `023` instead of `160` for historical reasons; the README correctly lists it as 160
 - `206反转链表.cpp` — uses 头插法 to reverse; categorized as "反转链表" in README
 - `118杨辉三角.cpp` — two implementations (push_back and resize); has `#include<bits/stdc++.h>` (力扣题 convention violation, same as 141)
 - `141环形链表.cpp` has `#include<bits/stdc++.h>` (convention violation — should be removed per 力扣题 rules)

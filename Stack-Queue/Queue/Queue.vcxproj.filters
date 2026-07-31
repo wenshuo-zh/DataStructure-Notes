@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="deque双端队列.cpp">
+    <ClCompile Include="225用队列实现栈.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
