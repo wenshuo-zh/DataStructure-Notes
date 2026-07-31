@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="232用栈实现队列.cpp">
+    <ClCompile Include="set.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

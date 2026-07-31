@@ -12,9 +12,10 @@
 | 链表 - 删除节点 | 2 | 203、83 |
 | 链表 - 反转链表 | 1 | 206 |
 | 栈与队列 - 相互实现 | 2 | 225、232 |
+| 数组 - 双指针 | 1 | 26 |
 | 数组 - 杨辉三角 | 1 | 118 |
 
-**力扣：12 题**
+**力扣：13 题**
 
 ---
 
@@ -71,6 +72,12 @@
 |------|------|------|
 | `vector.cpp` | vector 基础操作 | 初始化（列表/拷贝/memset）、增删（push_back/insert/pop_back/erase）、访问（at vs []） |
 
+### 双指针原地去重
+
+| 题号 | 题目 | 文件 | 技巧 |
+|------|------|------|------|
+| [26](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/) | 删除有序数组中的重复项 | `26删除数组中重复的元素.cpp` | 快慢指针：slow 指向已去重末尾，fast 扫描，不同则 `nums[++slow] = nums[fast]` |
+
 ### 杨辉三角
 
 | 题号 | 题目 | 文件 | 技巧 |
@@ -95,7 +102,23 @@
 | 题号 | 题目 | 文件 | 技巧 |
 |------|------|------|------|
 | [225](https://leetcode.cn/problems/implement-stack-using-queues/) | 用队列实现栈 | `225用队列实现栈.cpp` | 双队列（push O(n)）：que1 存栈顺序，que2 辅助倒入，swap 切换 |
-| [232](https://leetcode.cn/problems/implement-stack-using-queues/) | 用栈实现队列 | `232用栈实现队列.cpp` | 双栈（均摊 O(1)）：inStack 只管 push，outStack 空时一次性从 inStack 倒入，pop/peek 从 outStack 取 |
+| [232](https://leetcode.cn/problems/implement-queue-using-stacks/) | 用栈实现队列 | `232用栈实现队列.cpp` | 双栈（均摊 O(1)）：inStack 只管 push，outStack 空时一次性从 inStack 倒入，pop/peek 从 outStack 取 |
+
+---
+
+## Set / Map（关联式容器）
+
+### 基础操作演示（非力扣题）
+
+| 文件 | 内容 | 技巧 |
+|------|------|------|
+| `set.cpp` | set 基础操作 | 构造（迭代器区间）、自动去重排序、insert/count/find/erase |
+
+### 对比参考
+
+| 题号 | 题目 | 文件 | 技巧 |
+|------|------|------|------|
+| [26](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/) | 删除有序数组中的重复项（set 版） | `26删除有序数组的重复项.cpp` | 用 set 自动去重排序，再写回数组；与双指针版本对比学习 |
 
 ---
 
@@ -109,6 +132,8 @@
 | **头插法反转** | 遍历原链表，逐个摘下节点插入新链表头部 | 206 |
 | **双栈模拟队列** | inStack 管输入、outStack 管输出，输出栈空时一次性倒入，均摊 O(1) | 232 |
 | **双队列模拟栈** | push 时辅助队列接收新元素，原队列元素依次倒入，swap 切换 | 225 |
+| **快慢指针（数组）** | slow 指向已去重末尾，fast 扫描；不同于链表的快慢指针，这里 slow 只有不同时才前进 | 26 |
+| **set 自动去重排序** | 利用 set 红黑树特性一行去重；`set<int> s(vec.begin(), vec.end())` | 26（对比版） |
 
 ---
 
@@ -131,6 +156,9 @@ Stack-Queue/              # 栈和队列
 Array(vector)/            # 数组/vector
 ├── Array(vector).sln     # VS 项目
 └── *.cpp                 # vector 基础演示 + 力扣题
+Set-Map/                  # set / map 关联式容器
+├── Set-Map.sln           # VS 项目
+└── *.cpp                 # set 基础演示 + 对比参考
 ```
 
 ## 环境

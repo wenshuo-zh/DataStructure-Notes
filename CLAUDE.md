@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Personal C++ data structures practice repo. Content is in Chinese (comments, variable names, `cout` messages). Active projects: singly linked lists (SingleList), stack & queue (Stack-Queue), vector/array (Array(vector)). DoublyLinkedList is scaffolded but empty.
+Personal C++ data structures practice repo. Content is in Chinese (comments, variable names, `cout` messages). Active projects: singly linked lists (SingleList), stack & queue (Stack-Queue), vector/array (Array(vector)), set/map (Set-Map). DoublyLinkedList is scaffolded but empty.
 
 Remote: `https://github.com/wenshuo-zh/DataStructure-Notes.git`
 
@@ -16,7 +16,8 @@ Remote: `https://github.com/wenshuo-zh/DataStructure-Notes.git`
   - `LinkedList/DoublyLinkedList/DoublyLinkedList.sln` — doubly linked list (no exercises yet)
   - `Stack-Queue/Stack.sln` — stack exercises
   - `Stack-Queue/Queue/Queue.sln` — queue exercises
-  - `Array(vector)/Array(vector).sln` — vector/array exercises (LeetCode 118 杨辉三角)
+  - `Array(vector)/Array(vector).sln` — vector/array exercises (LeetCode 118 杨辉三角, 26 去重)
+  - `Set-Map/Set-Map.sln` — set/map associative containers
 - **Configuration**: Debug x64 (default); Release x64 also available
 - **Critical**: Every `.cpp` file in a project defines its own `main()`. **Only one `.cpp` file can be compiled at a time.** To switch exercises in VS: right-click the unwanted `.cpp` files → Properties → "Excluded From Build" → Yes. Keep only the one you want active.
 - **Build output**: `<ProjectDir>/x64/Debug/<ProjectName>.exe`
@@ -40,6 +41,9 @@ msbuild Queue.sln /p:Configuration=Debug /p:Platform=x64
 
 # Array(vector) (Array(vector)\):
 msbuild "Array(vector).sln" /p:Configuration=Debug /p:Platform=x64
+
+# Set-Map (Set-Map\):
+msbuild Set-Map.sln /p:Configuration=Debug /p:Platform=x64
 ```
 
 Or from repo root with full paths:
@@ -74,7 +78,11 @@ Stack-Queue/                # Stack & queue exercises (active)
 Array(vector)/              # Vector/array exercises (active)
   Array(vector).sln         # VS solution — open this
   Array(vector).vcxproj
-  *.cpp                     # vector.cpp (基础演示), 118杨辉三角.cpp (WIP)
+  *.cpp                     # vector.cpp (基础演示), 118杨辉三角.cpp, 26删除数组中重复的元素.cpp
+Set-Map/                    # Set/map associative containers (active)
+  Set-Map.sln               # VS solution — open this
+  Set-Map.vcxproj
+  *.cpp                     # set.cpp (基础演示), 26删除有序数组的重复项.cpp (set对比版)
 回放/                       # Screen recordings (.vep), not tracked in git
 ```
 
@@ -128,6 +136,13 @@ public:
 - 力扣题（如 `118杨辉三角.cpp`）同样按力扣规范：只有 `class Solution`，不放 `#include`/`main()`
 - 教学注释注明 API 用法（如 `push_back`、`insert`、`erase`、`at` vs `[]` 的区别等）
 
+### Set-Map 项目（`Set-Map/` 目录）
+
+- 使用 STL 关联式容器（`std::set`、`std::map`），底层红黑树
+- 基础演示保留 `#include` + `using namespace std` + `main()`
+- set 特性：自动去重、默认升序、不支持随机访问（遍历用范围 for 而非下标）
+- 力扣题如有 set/map 对比版本放此处，真正的算法版本放对应数据结构的项目
+
 ### 共用规则
 
 - 中文注释解释算法步骤
@@ -148,5 +163,8 @@ public:
 - `141环形链表.cpp` has `#include<bits/stdc++.h>` (convention violation — should be removed per 力扣题 rules)
 - `225用队列实现栈.cpp` — in Queue project, dual-queue approach (push O(n), pop O(1))
 - `232用栈实现队列.cpp` — in Stack project, dual-stack `inStack`/`outStack` approach (均摊 O(1))
+- `26删除数组中重复的元素.cpp` — in Array(vector) project, 快慢指针双指针法 (O(n), O(1) extra)
+- `26删除有序数组的重复项.cpp` — in Set-Map project, set-based approach (对比参考，非标准解法)
+- `set.cpp` — in Set-Map project, set 基础操作演示（构造/insert/count/find/erase/遍历）
 - Encoding: files contain GBK/GB2312-encoded Chinese characters. Open with the correct encoding in editors outside VS.
 - **README.md**: Must be kept in sync. When a new exercise is added or an existing one is completed, update `README.md` — add the entry to its category table, update the progress count, and add any new technique to the "常用技巧总结" section. The README is organized by data structure category (链表, 二叉树, etc.) with sub-groups by technique (快慢指针, 合并/运算, etc.).
