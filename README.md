@@ -113,12 +113,23 @@
 | 文件 | 内容 | 技巧 |
 |------|------|------|
 | `set.cpp` | set 基础操作 | 构造（迭代器区间）、自动去重排序、insert/count/find/erase |
+| `map.cpp` | map 基础操作 | 键值对存储、键唯一自动排序、构造/insert/[]/at/find/count/erase/遍历 |
 
 ### 对比参考
 
 | 题号 | 题目 | 文件 | 技巧 |
 |------|------|------|------|
 | [26](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/) | 删除有序数组中的重复项（set 版） | `26删除有序数组的重复项.cpp` | 用 set 自动去重排序，再写回数组；与双指针版本对比学习 |
+
+---
+
+## String（字符串）
+
+### 基础操作演示（非力扣题）
+
+| 文件 | 内容 | 技巧 |
+|------|------|------|
+| `string.cpp` | string 基础操作 | 待补充 |
 
 ---
 
@@ -158,7 +169,10 @@ Array(vector)/            # 数组/vector
 └── *.cpp                 # vector 基础演示 + 力扣题
 Set-Map/                  # set / map 关联式容器
 ├── Set-Map.sln           # VS 项目
-└── *.cpp                 # set 基础演示 + 对比参考
+└── *.cpp                 # set/map 基础演示 + 对比参考
+String/                   # 字符串
+├── String.sln            # VS 项目
+└── *.cpp                 # string 基础演示 + 力扣题
 ```
 
 ## 环境

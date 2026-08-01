@@ -8,6 +8,10 @@ Personal C++ data structures practice repo. Content is in Chinese (comments, var
 
 Remote: `https://github.com/wenshuo-zh/DataStructure-Notes.git`
 
+## 语言
+
+全程使用中文与用户交流（代码和技术术语除外）。
+
 ## Build System
 
 - **Environment**: Visual Studio 2022, Windows 11, v143 toolset (C++17+)
@@ -18,6 +22,7 @@ Remote: `https://github.com/wenshuo-zh/DataStructure-Notes.git`
   - `Stack-Queue/Queue/Queue.sln` — queue exercises
   - `Array(vector)/Array(vector).sln` — vector/array exercises (LeetCode 118 杨辉三角, 26 去重)
   - `Set-Map/Set-Map.sln` — set/map associative containers
+  - `String/String.sln` — string exercises
 - **Configuration**: Debug x64 (default); Release x64 also available
 - **Critical**: Every `.cpp` file in a project defines its own `main()`. **Only one `.cpp` file can be compiled at a time.** To switch exercises in VS: right-click the unwanted `.cpp` files → Properties → "Excluded From Build" → Yes. Keep only the one you want active.
 - **Build output**: `<ProjectDir>/x64/Debug/<ProjectName>.exe`
@@ -44,6 +49,9 @@ msbuild "Array(vector).sln" /p:Configuration=Debug /p:Platform=x64
 
 # Set-Map (Set-Map\):
 msbuild Set-Map.sln /p:Configuration=Debug /p:Platform=x64
+
+# String (String\):
+msbuild String.sln /p:Configuration=Debug /p:Platform=x64
 ```
 
 Or from repo root with full paths:
@@ -55,6 +63,14 @@ msbuild LinkedList\SingleList\SingleList.sln /p:Configuration=Debug /p:Platform=
 ### Adding a new .cpp file (outside VS)
 
 When adding a `.cpp` file without Visual Studio, you must manually edit the `.vcxproj` file — add a `<ClCompile Include="新文件.cpp" />` entry inside the existing `<ItemGroup>` that contains the other `<ClCompile>` entries. VS would do this automatically via "Add → Existing Item", but CLI users must edit the XML directly.
+
+### Adding a new project (e.g., a new data structure)
+
+**Must be done inside Visual Studio** — do NOT attempt to manually create `.sln` / `.vcxproj` / `.vcxproj.filters` files. VS generates GUIDs and XML structure that hand-authoring gets wrong. Steps:
+1. VS → 文件 → 新建 → 项目 → 控制台应用 (C++, Windows, v143)
+2. Name and place it in the proper subdirectory
+3. Then add existing `.cpp` files or create new ones
+4. After creation, update this CLAUDE.md and README.md to reflect the new project
 
 ## Repository Structure
 
@@ -82,7 +98,11 @@ Array(vector)/              # Vector/array exercises (active)
 Set-Map/                    # Set/map associative containers (active)
   Set-Map.sln               # VS solution — open this
   Set-Map.vcxproj
-  *.cpp                     # set.cpp (基础演示), 26删除有序数组的重复项.cpp (set对比版)
+  *.cpp                     # set.cpp (基础演示), map.cpp (基础演示), 26删除有序数组的重复项.cpp (set对比版)
+String/                     # String exercises (active)
+  String.sln                # VS solution — open this
+  String.vcxproj
+  *.cpp                     # string.cpp (基础演示)
 回放/                       # Screen recordings (.vep), not tracked in git
 ```
 
@@ -141,7 +161,14 @@ public:
 - 使用 STL 关联式容器（`std::set`、`std::map`），底层红黑树
 - 基础演示保留 `#include` + `using namespace std` + `main()`
 - set 特性：自动去重、默认升序、不支持随机访问（遍历用范围 for 而非下标）
+- map 特性：键值对存储（`pair<const Key, T>`）、键唯一自动排序、支持 `[]`/`at` 访问（`[]` 键不存在时会插入默认值）、`find`/`count` 查找、`erase` 删除
 - 力扣题如有 set/map 对比版本放此处，真正的算法版本放对应数据结构的项目
+
+### String 项目（`String/` 目录）
+
+- 使用 STL `std::string`，基础演示保留 `#include` + `using namespace std` + `main()`
+- 力扣题按力扣规范：只有 `class Solution`，不放 `#include`/`main()`
+- 同样遵守"每次只编译一个 `.cpp`"规则
 
 ### 共用规则
 
@@ -151,20 +178,36 @@ public:
 
 ## Notes
 
-- The `.vcxproj` file lists registered `.cpp` files. When adding a new exercise:
-  1. Add the `.cpp` to the appropriate project directory
-  2. In VS: right-click Source Files → Add → Existing Item, or manually edit the `.vcxproj` `<ClCompile>` list
-  3. Exclude all other `.cpp` files from build so only the new one compiles
-- `021删除链表的倒数第n个节点.cpp` — duplicate of `19` (same problem, different approach). Registered in `.vcxproj` but likely a WIP variant
-- `203移除链表元素.cpp` exists on disk in `SingleList/` but is **not registered** in the `.vcxproj` — needs to be added if you want to compile it
-- `023相交链表.cpp` — this is actually LeetCode **160** (相交链表). The filename uses `023` instead of `160` for historical reasons; the README correctly lists it as 160
-- `206反转链表.cpp` — uses 头插法 to reverse; categorized as "反转链表" in README
-- `118杨辉三角.cpp` — two implementations (push_back and resize); has `#include<bits/stdc++.h>` (力扣题 convention violation, same as 141)
-- `141环形链表.cpp` has `#include<bits/stdc++.h>` (convention violation — should be removed per 力扣题 rules)
-- `225用队列实现栈.cpp` — in Queue project, dual-queue approach (push O(n), pop O(1))
-- `232用栈实现队列.cpp` — in Stack project, dual-stack `inStack`/`outStack` approach (均摊 O(1))
-- `26删除数组中重复的元素.cpp` — in Array(vector) project, 快慢指针双指针法 (O(n), O(1) extra)
-- `26删除有序数组的重复项.cpp` — in Set-Map project, set-based approach (对比参考，非标准解法)
-- `set.cpp` — in Set-Map project, set 基础操作演示（构造/insert/count/find/erase/遍历）
-- Encoding: files contain GBK/GB2312-encoded Chinese characters. Open with the correct encoding in editors outside VS.
-- **README.md**: Must be kept in sync. When a new exercise is added or an existing one is completed, update `README.md` — add the entry to its category table, update the progress count, and add any new technique to the "常用技巧总结" section. The README is organized by data structure category (链表, 二叉树, etc.) with sub-groups by technique (快慢指针, 合并/运算, etc.).
+### 构建 / 文件注册
+
+- 每个 `.cpp` 文件都有独立的 `main()`，**同一时间只能编译一个 `.cpp`**。在 VS 中：右键不需要的 `.cpp` → Properties → "Excluded From Build" → Yes。
+- 添加新 `.cpp` 时需手动编辑 `.vcxproj`，在 `<ItemGroup>` 中添加 `<ClCompile Include="新文件.cpp" />`。
+- 以下文件**在磁盘上存在但未注册到 vcxproj**，如需编译需先注册：
+  | 项目 | 未注册的文件 |
+  |------|-------------|
+  | SingleList | `203移除链表元素.cpp` |
+  | Stack | `栈.cpp`、`用栈实现链表头插法.cpp` |
+  | Queue | `deque双端队列.cpp` |
+  | Array(vector) | `vector.cpp` |
+
+### 文件名 / 题号特殊情况
+
+- `023相交链表.cpp` — 实际是 LeetCode **160**（相交链表），文件名用了 `023` 是历史原因，README 已正确标为 160。
+- `021删除链表的倒数第n个节点.cpp` — 19 号的重复/变体，已在 vcxproj 中但可能是 WIP。
+- `206反转链表.cpp` — 用头插法反转，README 归类为"反转链表"。
+
+### 力扣题规范违规
+
+以下力扣题文件含有 `#include<bits/stdc++.h>`，应移除以符合规范（只保留 `struct ListNode` + `class Solution`）：
+
+- `141环形链表.cpp`
+- `118杨辉三角.cpp`
+- `26删除数组中重复的元素.cpp`（Array(vector) 项目中的双指针版本）
+
+### 编码
+
+文件含 GBK/GB2312 编码的中文字符。在 VS 之外的编辑器打开时需选择正确编码。
+
+### README 同步
+
+新增或完成题目后，必须同步更新 `README.md`：在对应分类表格中添加条目、更新进度计数、如有新技术点加入"常用技巧总结"。README 按数据结构分类（链表、二叉树等），子分组按技巧（快慢指针、合并/运算等）。
