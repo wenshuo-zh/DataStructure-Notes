@@ -14,9 +14,9 @@
 | 栈与队列 - 相互实现 | 2 | 225、232 |
 | 数组 - 双指针 | 1 | 26 |
 | 数组 - 杨辉三角 | 1 | 118 |
-| 哈希表 - 交集 | 2 | 349、350 |
+| 哈希表 | 3 | 349、350、383 |
 
-**力扣：15 题**
+**力扣：16 题**
 
 ---
 
@@ -85,6 +85,12 @@
 |------|------|------|------|
 | [118](https://leetcode.cn/problems/pascals-triangle/) | 杨辉三角 | `118杨辉三角.cpp` | `vector<vector<int>>` 二维数组，`resize` 预分配 + 直接索引，或 `push_back` 逐行构建 |
 
+### 数组字符计数
+
+| 题号 | 题目 | 文件 | 技巧 |
+|------|------|------|------|
+| [383](https://leetcode.cn/problems/ransom-note/) | 赎金信（数组版） | `383赎金信.cpp` | `int[26]` 代替 `unordered_map`：字母映射到 0~25 下标，O(1) 无哈希开销，比哈希版更快 |
+
 ---
 
 ## 栈与队列 (Stack & Queue)
@@ -142,12 +148,13 @@
 |------|------|------|
 | `哈希表.cpp` | 哈希表基础操作 | 待补充 |
 
-### 交集 / 查找
+### 计数 / 查找
 
 | 题号 | 题目 | 文件 | 技巧 |
 |------|------|------|------|
 | [349](https://leetcode.cn/problems/intersection-of-two-arrays/) | 两个数组的交集 | `349两个数组的交集.cpp` | 两个 `unordered_set`：分别去重，遍历一个查另一个的 `count`；O(n) 时间 |
 | [350](https://leetcode.cn/problems/intersection-of-two-arrays-ii/) | 两个数组的交集 II | `350两个数的交集2.cpp` | `unordered_map` 计数：统计 nums1 频次，遍历 nums2 匹配则输出并减一；处理重复元素 |
+| [383](https://leetcode.cn/problems/ransom-note/) | 赎金信（哈希版） | `383赎金信.cpp` | `unordered_map<char,int>` 字符计数；详见 Array(vector) 项目中的 `int[26]` 数组版对比 |
 
 ---
 
@@ -164,6 +171,7 @@
 | **快慢指针（数组）** | slow 指向已去重末尾，fast 扫描；不同于链表的快慢指针，这里 slow 只有不同时才前进 | 26 |
 | **set 自动去重排序** | 利用 set 红黑树特性一行去重；`set<int> s(vec.begin(), vec.end())` | 26（对比版） |
 | **unordered_set 哈希去重** | 无序 + O(1) 查找，适合只关心存在性不关心顺序的场景 | 349 |
+| **int[26] 数组计数** | 字母 → 下标映射：`c - 'a'`，比 `unordered_map` 更快，无需哈希开销；适用场景限于字符集已知且较小 | 383 |
 
 ---
 

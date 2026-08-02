@@ -21,5 +21,11 @@
     <ClCompile Include="26删除数组中重复的元素.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="vector.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="383赎金信.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

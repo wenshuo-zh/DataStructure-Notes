@@ -98,7 +98,7 @@ Stack-Queue/                # Stack & queue exercises (active)
 Array(vector)/              # Vector/array exercises (active)
   Array(vector).sln         # VS solution — open this
   Array(vector).vcxproj
-  *.cpp                     # vector.cpp (基础演示), 118杨辉三角.cpp, 26删除数组中重复的元素.cpp
+  *.cpp                     # vector.cpp (基础演示), 118杨辉三角.cpp, 26删除数组中重复的元素.cpp, 383赎金信.cpp (数组版)
 Set-Map/                    # Set/map associative containers (active)
   Set-Map.sln               # VS solution — open this
   Set-Map.vcxproj
@@ -110,7 +110,7 @@ String/                     # String exercises (active)
 HashTable/                  # Hash table exercises (active)
   HashTable.sln             # VS solution — open this
   HashTable.vcxproj
-  *.cpp                     # 哈希表.cpp (基础演示占位), 349两个数组的交集.cpp, 350两个数的交集2.cpp
+  *.cpp                     # 哈希表.cpp (基础演示占位), 349两个数组的交集.cpp, 350两个数的交集2.cpp, 383赎金信.cpp
 回放/                       # Screen recordings (.vep), not tracked in git
 ```
 
@@ -204,9 +204,9 @@ public:
   | SingleList | `203移除链表元素.cpp` |
   | Stack | `栈.cpp`、`用栈实现链表头插法.cpp` |
   | Queue | `deque双端队列.cpp` |
-  | Array(vector) | `vector.cpp` |
+  | Array(vector) | 无（`vector.cpp` 已注册） |
   | Set-Map | `set.cpp`、`26删除有序数组的重复项.cpp` |
-  | HashTable | `349两个数组的交集.cpp`、`350两个数的交集2.cpp`、`哈希表.cpp` |
+  | HashTable | `349两个数组的交集.cpp`、`350两个数的交集2.cpp`、`383赎金信.cpp`、`哈希表.cpp` |
 
 ### 文件名 / 题号特殊情况
 
@@ -229,6 +229,8 @@ public:
 - `1两数之和.cpp`
 - `349两个数组的交集.cpp`（HashTable 项目，unordered_set 解法）
 - `350两个数的交集2.cpp`（HashTable 项目，unordered_map 计数解法）
+- `383赎金信.cpp`（HashTable 项目，unordered_map 哈希版）
+- `383赎金信.cpp`（Array(vector) 项目，int[26] 数组版）
 
 > 基础演示文件（如 `栈.cpp`、`vector.cpp`、`set.cpp` 等）按规范可以保留 `#include` + `main()`，不在违规之列。
 
