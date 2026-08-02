@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Personal C++ data structures practice repo. Content is in Chinese (comments, variable names, `cout` messages). Active projects: singly linked lists (SingleList), stack & queue (Stack-Queue), vector/array (Array(vector)), set/map (Set-Map). DoublyLinkedList is scaffolded but empty.
+Personal C++ data structures practice repo. Content is in Chinese (comments, variable names, `cout` messages). Active projects: singly linked lists (SingleList), stack & queue (Stack-Queue), vector/array (Array(vector)), set/map (Set-Map), string (String), hash table (HashTable). DoublyLinkedList is scaffolded but empty.
 
 Remote: `https://github.com/wenshuo-zh/DataStructure-Notes.git`
 
@@ -23,6 +23,7 @@ Remote: `https://github.com/wenshuo-zh/DataStructure-Notes.git`
   - `Array(vector)/Array(vector).sln` — vector/array exercises (LeetCode 118 杨辉三角, 26 去重)
   - `Set-Map/Set-Map.sln` — set/map associative containers
   - `String/String.sln` — string exercises
+  - `HashTable/HashTable.sln` — hash table / unordered_set exercises
 - **Configuration**: Debug x64 (default); Release x64 also available
 - **Critical**: Every `.cpp` file in a project defines its own `main()`. **Only one `.cpp` file can be compiled at a time.** To switch exercises in VS: right-click the unwanted `.cpp` files → Properties → "Excluded From Build" → Yes. Keep only the one you want active.
 - **Build output**: `<ProjectDir>/x64/Debug/<ProjectName>.exe`
@@ -52,6 +53,9 @@ msbuild Set-Map.sln /p:Configuration=Debug /p:Platform=x64
 
 # String (String\):
 msbuild String.sln /p:Configuration=Debug /p:Platform=x64
+
+# HashTable (HashTable\):
+msbuild HashTable.sln /p:Configuration=Debug /p:Platform=x64
 ```
 
 Or from repo root with full paths:
@@ -98,11 +102,15 @@ Array(vector)/              # Vector/array exercises (active)
 Set-Map/                    # Set/map associative containers (active)
   Set-Map.sln               # VS solution — open this
   Set-Map.vcxproj
-  *.cpp                     # set.cpp (基础演示), map.cpp (基础演示), 26删除有序数组的重复项.cpp (set对比版)
+  *.cpp                     # set.cpp (基础演示), map.cpp (基础演示), 1两数之和.cpp (map哈希法), 26删除有序数组的重复项.cpp (set对比版)
 String/                     # String exercises (active)
   String.sln                # VS solution — open this
   String.vcxproj
   *.cpp                     # string.cpp (基础演示)
+HashTable/                  # Hash table exercises (active)
+  HashTable.sln             # VS solution — open this
+  HashTable.vcxproj
+  *.cpp                     # 哈希表.cpp (基础演示占位), 349两个数组的交集.cpp, 350两个数的交集2.cpp
 回放/                       # Screen recordings (.vep), not tracked in git
 ```
 
@@ -163,12 +171,20 @@ public:
 - set 特性：自动去重、默认升序、不支持随机访问（遍历用范围 for 而非下标）
 - map 特性：键值对存储（`pair<const Key, T>`）、键唯一自动排序、支持 `[]`/`at` 访问（`[]` 键不存在时会插入默认值）、`find`/`count` 查找、`erase` 删除
 - 力扣题如有 set/map 对比版本放此处，真正的算法版本放对应数据结构的项目
+- 力扣题（如 `1两数之和.cpp`）同样应按力扣规范（只有 `class Solution`），但目前部分文件仍有 `#include<bits/stdc++.h>`，见 Notes 中的违规列表
 
 ### String 项目（`String/` 目录）
 
 - 使用 STL `std::string`，基础演示保留 `#include` + `using namespace std` + `main()`
 - 力扣题按力扣规范：只有 `class Solution`，不放 `#include`/`main()`
 - 同样遵守"每次只编译一个 `.cpp`"规则
+
+### HashTable 项目（`HashTable/` 目录）
+
+- 使用 STL 无序容器（`std::unordered_set`、`std::unordered_map`），底层哈希表
+- 基础演示保留 `#include` + `using namespace std` + `main()`
+- `unordered_set` vs `set`：哈希表 O(1) 平均查找 vs 红黑树 O(log n)，无序 vs 自动排序；需要排序或有序遍历时用 `set`，只关心快速查找/去重时用 `unordered_set`
+- 力扣题同样按力扣规范（只有 `class Solution`），目前 `349两个数组的交集.cpp` 仍有 `#include<bits/stdc++.h>`
 
 ### 共用规则
 
@@ -189,25 +205,41 @@ public:
   | Stack | `栈.cpp`、`用栈实现链表头插法.cpp` |
   | Queue | `deque双端队列.cpp` |
   | Array(vector) | `vector.cpp` |
+  | Set-Map | `set.cpp`、`26删除有序数组的重复项.cpp` |
+  | HashTable | `349两个数组的交集.cpp`、`350两个数的交集2.cpp`、`哈希表.cpp` |
 
 ### 文件名 / 题号特殊情况
 
 - `023相交链表.cpp` — 实际是 LeetCode **160**（相交链表），文件名用了 `023` 是历史原因，README 已正确标为 160。
 - `021删除链表的倒数第n个节点.cpp` — 19 号的重复/变体，已在 vcxproj 中但可能是 WIP。
 - `206反转链表.cpp` — 用头插法反转，README 归类为"反转链表"。
+- `1两数之和.cpp` — LeetCode **1**（Two Sum），用 `std::map` 哈希法（O(n)），放在 Set-Map 项目中作为 map 应用演示。文件名不含"set/map"字样，README 应归于 Set-Map 分类。
 
 ### 力扣题规范违规
 
 以下力扣题文件含有 `#include<bits/stdc++.h>`，应移除以符合规范（只保留 `struct ListNode` + `class Solution`）：
 
 - `141环形链表.cpp`
+- `023相交链表.cpp`
 - `118杨辉三角.cpp`
 - `26删除数组中重复的元素.cpp`（Array(vector) 项目中的双指针版本）
+- `232用栈实现队列.cpp`
+- `225用队列实现栈.cpp`
+- `26删除有序数组的重复项.cpp`（Set-Map 项目中的 set 对比版）
+- `1两数之和.cpp`
+- `349两个数组的交集.cpp`（HashTable 项目，unordered_set 解法）
+- `350两个数的交集2.cpp`（HashTable 项目，unordered_map 计数解法）
+
+> 基础演示文件（如 `栈.cpp`、`vector.cpp`、`set.cpp` 等）按规范可以保留 `#include` + `main()`，不在违规之列。
+
+### Git / README 工作流
+
+每次 `git commit` + `git push` 之前，必须检查并同步更新 `README.md`：
+- 新增的力扣题加入对应分类表格，更新进度统计数字
+- 新出现的技巧加入"常用技巧总结"
+- 基础演示文件或新项目目录有变化也要反映到 README
+- 参见 `.claude/memory/README-sync.md`
 
 ### 编码
 
 文件含 GBK/GB2312 编码的中文字符。在 VS 之外的编辑器打开时需选择正确编码。
-
-### README 同步
-
-新增或完成题目后，必须同步更新 `README.md`：在对应分类表格中添加条目、更新进度计数、如有新技术点加入"常用技巧总结"。README 按数据结构分类（链表、二叉树等），子分组按技巧（快慢指针、合并/运算等）。
