@@ -90,11 +90,11 @@ LinkedList/DoublyLinkedList/ # Doubly linked list (scaffold only — no .cpp fil
 Stack-Queue/                # Stack & queue exercises (active)
   Stack.sln                 # VS solution for stack
   Stack.vcxproj
-  *.cpp                     # Stack exercises (栈.cpp, 用栈实现链表头插法.cpp)
+  *.cpp                     # 栈.cpp (基础演示, 未注册), 用栈实现链表头插法.cpp (未注册), 232用栈实现队列.cpp
   Queue/                    # Queue sub-project
     Queue.sln               # VS solution for queue
     Queue.vcxproj
-    *.cpp                   # Queue exercises (队列.cpp, deque双端队列.cpp)
+    *.cpp                   # 队列.cpp (基础演示), deque双端队列.cpp (未注册), 225用队列实现栈.cpp
 Array(vector)/              # Vector/array exercises (active)
   Array(vector).sln         # VS solution — open this
   Array(vector).vcxproj
@@ -102,7 +102,7 @@ Array(vector)/              # Vector/array exercises (active)
 Set-Map/                    # Set/map associative containers (active)
   Set-Map.sln               # VS solution — open this
   Set-Map.vcxproj
-  *.cpp                     # set.cpp (基础演示), map.cpp (基础演示), 1两数之和.cpp (map哈希法), 26删除有序数组的重复项.cpp (set对比版)
+  *.cpp                     # set.cpp (基础演示), map.cpp (基础演示), 1两数之和.cpp (map哈希法), 26删除有序数组的重复项.cpp (set对比版, 未注册)
 String/                     # String exercises (active)
   String.sln                # VS solution — open this
   String.vcxproj
@@ -110,7 +110,7 @@ String/                     # String exercises (active)
 HashTable/                  # Hash table exercises (active)
   HashTable.sln             # VS solution — open this
   HashTable.vcxproj
-  *.cpp                     # 哈希表.cpp (基础演示占位), 349两个数组的交集.cpp, 350两个数的交集2.cpp, 383赎金信.cpp
+  *.cpp                     # 哈希表.cpp (基础演示), 13罗马数字转整数.cpp, 205同构字符串.cpp, 349两个数组的交集.cpp, 350两个数的交集2.cpp, 383赎金信.cpp
 回放/                       # Screen recordings (.vep), not tracked in git
 ```
 
@@ -120,9 +120,12 @@ HashTable/                  # Hash table exercises (active)
 
 ### 力扣题（文件名含题号，如 `203移除链表元素.cpp`）
 
-**只写算法，可直接粘贴到 LeetCode 提交。不要 `#include`、不要 `using namespace`、不要 `main()`、不要 `delete` 释放内存。**
+**VS 本地可编译运行。** 带 `#include` + `using namespace std`（VS 编码和编译检查需要），但不写 `main()`（避免多文件 `main` 冲突）。提交到 LeetCode 时手动去掉 `#include`、`using namespace std` 即可。
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
 struct ListNode {
     int val;
     ListNode *next;
@@ -139,9 +142,9 @@ public:
 };
 ```
 
-- 只有 `struct ListNode` + `class Solution`，其余一律不加
+- 不写 `main()` — 多个 `.cpp` 各有 `main` 会导致链接冲突，当前项目依赖 VS 的"Excluded From Build"机制切换
 - 中文注释可以保留
-- 不释放 `dummyHead`（LeetCode 会统一管理内存）
+- 不释放 `dummyHead`（在 VS 本地测试时注意内存泄漏问题；LeetCode 会统一管理内存）
 
 ### 基础操作演示（文件名不含题号，如 `头插法_含new和malloc差异.cpp`）
 
@@ -150,41 +153,21 @@ public:
 - 保留教学注释（如 `new` vs `malloc` 的区别）
 - 同样用 `new`/`delete`，不用 `malloc`/`free`
 
-### Stack-Queue 项目（`Stack-Queue/` 目录）
+### 各项目特有说明
 
-- `Stack.sln` 管理栈相关 `.cpp`，`Queue/Queue.sln` 管理队列相关 `.cpp`
-- 基础演示保留 `#include` + `using namespace std`（如 `栈.cpp`、`队列.cpp`）
-- 使用 STL 容器（`std::stack`、`std::queue`、`std::deque`）或自建结构
-- 文件名如含"链表"或"头插法"字样说明是用栈/队列操作链表
-- 同样遵守"每次只编译一个 `.cpp`"规则
+> **所有项目统一规则**：力扣题（文件名含题号数字）带 `#include <bits/stdc++.h>` + `using namespace std` + `struct ListNode`/`class Solution`，不写 `main()`。基础演示（不含题号）保留 `#include` + `using namespace std` + `main()` 自驱动。每个项目每次只编译一个 `.cpp`。
 
-### Array(vector) 项目（`Array(vector)/` 目录）
+**Stack-Queue** — `Stack.sln` 管理栈相关 `.cpp`，`Queue/Queue.sln` 管理队列相关 `.cpp`。使用 STL 容器（`std::stack`、`std::queue`、`std::deque`）。文件名含"链表"/"头插法"说明是用栈/队列操作链表。
 
-- 使用 STL `std::vector`，基础演示保留 `#include` + `using namespace std` + `main()`
-- 力扣题（如 `118杨辉三角.cpp`）同样按力扣规范：只有 `class Solution`，不放 `#include`/`main()`
-- 教学注释注明 API 用法（如 `push_back`、`insert`、`erase`、`at` vs `[]` 的区别等）
+> ⚠️ Stack.vcxproj 只注册了 `232用栈实现队列.cpp`，缺少 `栈.cpp`、`用栈实现链表头插法.cpp`；Queue.vcxproj 缺少 `deque双端队列.cpp`。需补注册。
 
-### Set-Map 项目（`Set-Map/` 目录）
+**Array(vector)** — 使用 `std::vector`。教学注释注明 API 用法（`push_back`/`insert`/`erase`/`at` vs `[]` 的区别等）。
 
-- 使用 STL 关联式容器（`std::set`、`std::map`），底层红黑树
-- 基础演示保留 `#include` + `using namespace std` + `main()`
-- set 特性：自动去重、默认升序、不支持随机访问（遍历用范围 for 而非下标）
-- map 特性：键值对存储（`pair<const Key, T>`）、键唯一自动排序、支持 `[]`/`at` 访问（`[]` 键不存在时会插入默认值）、`find`/`count` 查找、`erase` 删除
-- 力扣题如有 set/map 对比版本放此处，真正的算法版本放对应数据结构的项目
-- 力扣题（如 `1两数之和.cpp`）同样应按力扣规范（只有 `class Solution`），但目前部分文件仍有 `#include<bits/stdc++.h>`，见 Notes 中的违规列表
+**Set-Map** — `std::set`/`std::map`，底层红黑树。set：自动去重、默认升序、不支持随机访问（遍历用范围 for）。map：键值对存储（`pair<const Key, T>`），键唯一自动排序，`[]` 键不存在时会插入默认值，`find`/`count` 查找，`erase` 删除。力扣题如有 set/map 对比版本放此处（如 `26删除有序数组的重复项.cpp` 是双指针数组题 26 的 set 对比版），真正的算法版本放对应数据结构的项目。
 
-### String 项目（`String/` 目录）
+**String** — 使用 `std::string`。
 
-- 使用 STL `std::string`，基础演示保留 `#include` + `using namespace std` + `main()`
-- 力扣题按力扣规范：只有 `class Solution`，不放 `#include`/`main()`
-- 同样遵守"每次只编译一个 `.cpp`"规则
-
-### HashTable 项目（`HashTable/` 目录）
-
-- 使用 STL 无序容器（`std::unordered_set`、`std::unordered_map`），底层哈希表
-- 基础演示保留 `#include` + `using namespace std` + `main()`
-- `unordered_set` vs `set`：哈希表 O(1) 平均查找 vs 红黑树 O(log n)，无序 vs 自动排序；需要排序或有序遍历时用 `set`，只关心快速查找/去重时用 `unordered_set`
-- 力扣题同样按力扣规范（只有 `class Solution`），目前 `349两个数组的交集.cpp` 仍有 `#include<bits/stdc++.h>`
+**HashTable** — `std::unordered_set`/`std::unordered_map`，底层哈希表。vs set/map：哈希表 O(1) 平均 vs 红黑树 O(log n)，无序 vs 自动排序；只关心快速查找/去重用 `unordered_set`，需要排序用 `set`。
 
 ### 共用规则
 
@@ -194,19 +177,30 @@ public:
 
 ## Notes
 
-### 构建 / 文件注册
+### 当前已知未注册文件
 
-- 每个 `.cpp` 文件都有独立的 `main()`，**同一时间只能编译一个 `.cpp`**。在 VS 中：右键不需要的 `.cpp` → Properties → "Excluded From Build" → Yes。
-- 添加新 `.cpp` 时需手动编辑 `.vcxproj`，在 `<ItemGroup>` 中添加 `<ClCompile Include="新文件.cpp" />`。
-- 以下文件**在磁盘上存在但未注册到 vcxproj**，如需编译需先注册：
-  | 项目 | 未注册的文件 |
-  |------|-------------|
-  | SingleList | `203移除链表元素.cpp` |
-  | Stack | `栈.cpp`、`用栈实现链表头插法.cpp` |
-  | Queue | `deque双端队列.cpp` |
-  | Array(vector) | 无（`vector.cpp` 已注册） |
-  | Set-Map | `set.cpp`、`26删除有序数组的重复项.cpp` |
-  | HashTable | `349两个数组的交集.cpp`、`350两个数的交集2.cpp`、`383赎金信.cpp`、`哈希表.cpp` |
+以下 `.cpp` 文件在磁盘上存在但 **未注册到 vcxproj**（无法在 VS 中编译，需手动添加 `<ClCompile Include="…" />`）：
+
+| 文件 | 应注册到 |
+|------|----------|
+| `LinkedList/SingleList/203移除链表元素.cpp` | SingleList.vcxproj |
+| `Stack-Queue/栈.cpp` | Stack.vcxproj |
+| `Stack-Queue/用栈实现链表头插法.cpp` | Stack.vcxproj |
+| `Stack-Queue/Queue/deque双端队列.cpp` | Queue/Queue.vcxproj |
+| `Set-Map/26删除有序数组的重复项.cpp` | Set-Map.vcxproj |
+
+### 检查未注册文件
+
+对比磁盘上的 `.cpp` 和 vcxproj 中的 `<ClCompile Include>` 条目，差集即为未注册文件：
+
+```bash
+# 列出某项目目录下所有 .cpp（磁盘）
+ls <ProjectDir>/*.cpp
+# 列出 vcxproj 中已注册的 .cpp
+grep -oP '(?<=Include=")[^"]+\.cpp' <ProjectDir>/<Project>.vcxproj
+```
+
+未注册的文件需手动编辑 vcxproj 添加 `<ClCompile Include="文件名.cpp" />`。
 
 ### 文件名 / 题号特殊情况
 
@@ -215,24 +209,16 @@ public:
 - `206反转链表.cpp` — 用头插法反转，README 归类为"反转链表"。
 - `1两数之和.cpp` — LeetCode **1**（Two Sum），用 `std::map` 哈希法（O(n)），放在 Set-Map 项目中作为 map 应用演示。文件名不含"set/map"字样，README 应归于 Set-Map 分类。
 
-### 力扣题规范违规
+### 力扣题规范违规检查
 
-以下力扣题文件含有 `#include<bits/stdc++.h>`，应移除以符合规范（只保留 `struct ListNode` + `class Solution`）：
+力扣题文件（文件名含题号数字）不写 `main()`（避免多文件链接冲突）。用以下命令检查：
 
-- `141环形链表.cpp`
-- `023相交链表.cpp`
-- `118杨辉三角.cpp`
-- `26删除数组中重复的元素.cpp`（Array(vector) 项目中的双指针版本）
-- `232用栈实现队列.cpp`
-- `225用队列实现栈.cpp`
-- `26删除有序数组的重复项.cpp`（Set-Map 项目中的 set 对比版）
-- `1两数之和.cpp`
-- `349两个数组的交集.cpp`（HashTable 项目，unordered_set 解法）
-- `350两个数的交集2.cpp`（HashTable 项目，unordered_map 计数解法）
-- `383赎金信.cpp`（HashTable 项目，unordered_map 哈希版）
-- `383赎金信.cpp`（Array(vector) 项目，int[26] 数组版）
+```bash
+# 找出所有力扣题文件中含有 main() 的
+grep -l 'main()' -- *[0-9]*.cpp
+```
 
-> 基础演示文件（如 `栈.cpp`、`vector.cpp`、`set.cpp` 等）按规范可以保留 `#include` + `main()`，不在违规之列。
+> 基础演示文件（如 `栈.cpp`、`vector.cpp`、`set.cpp` 等不含题号的文件）按规范需要 `main()`，不在违规之列。
 
 ### Git / README 工作流
 

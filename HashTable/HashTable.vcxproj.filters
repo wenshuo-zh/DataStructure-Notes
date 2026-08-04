@@ -14,4 +14,18 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="哈希表.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="349两个数组的交集.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="350两个数的交集2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="383赎金信.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>

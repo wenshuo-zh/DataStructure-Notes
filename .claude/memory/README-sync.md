@@ -13,4 +13,4 @@ metadata:
 
 **Why:** 用户用 README 在 GitHub 上展示刷题进度，README 落后于实际代码会让记录失去价值。
 
-**How to apply:** 每次 push 前，先扫描 `LinkedList/` 下所有 `.cpp` 文件，对照 README 的题目列表，有差异就更新。[[claude-md-sync]]
+**How to apply:** 每次 push 前，先扫描所有项目目录下 `.cpp` 文件，对照 README 的题目列表，有差异就更新。

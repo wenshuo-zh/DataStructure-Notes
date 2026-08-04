@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="1两数之和.cpp" />
     <ClCompile Include="map.cpp" />
+    <ClCompile Include="set.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -14,9 +14,9 @@
 | 栈与队列 - 相互实现 | 2 | 225、232 |
 | 数组 - 双指针 | 1 | 26 |
 | 数组 - 杨辉三角 | 1 | 118 |
-| 哈希表 | 3 | 349、350、383 |
+| 哈希表 | 5 | 349、350、383、13、205 |
 
-**力扣：16 题**
+**力扣：18 题**
 
 ---
 
@@ -152,9 +152,11 @@
 
 | 题号 | 题目 | 文件 | 技巧 |
 |------|------|------|------|
+| [13](https://leetcode.cn/problems/roman-to-integer/) | 罗马数字转整数 | `13罗马数字转整数.cpp` | `unordered_map<char,int>` 建立罗马字符到数值的映射，遍历字符串，左边字符小于右边字符时减去，否则加上 |
 | [349](https://leetcode.cn/problems/intersection-of-two-arrays/) | 两个数组的交集 | `349两个数组的交集.cpp` | 两个 `unordered_set`：分别去重，遍历一个查另一个的 `count`；O(n) 时间 |
 | [350](https://leetcode.cn/problems/intersection-of-two-arrays-ii/) | 两个数组的交集 II | `350两个数的交集2.cpp` | `unordered_map` 计数：统计 nums1 频次，遍历 nums2 匹配则输出并减一；处理重复元素 |
 | [383](https://leetcode.cn/problems/ransom-note/) | 赎金信（哈希版） | `383赎金信.cpp` | `unordered_map<char,int>` 字符计数；详见 Array(vector) 项目中的 `int[26]` 数组版对比 |
+| [205](https://leetcode.cn/problems/isomorphic-strings/) | 同构字符串 | `205同构字符串.cpp` | `unordered_map<char,int>` 记录每个字符的最后出现位置，同步比较 s[i] 和 t[i] 的 lastPos，不同则映射冲突 |
 
 ---
 
@@ -172,6 +174,7 @@
 | **set 自动去重排序** | 利用 set 红黑树特性一行去重；`set<int> s(vec.begin(), vec.end())` | 26（对比版） |
 | **unordered_set 哈希去重** | 无序 + O(1) 查找，适合只关心存在性不关心顺序的场景 | 349 |
 | **int[26] 数组计数** | 字母 → 下标映射：`c - 'a'`，比 `unordered_map` 更快，无需哈希开销；适用场景限于字符集已知且较小 | 383 |
+| **同构字符串映射** | 用两个 map 分别记录 s 和 t 中每个字符的最后出现位置，同一位置 i 比较 `mps[s[i]]` 和 `mpt[t[i]]`，不同则映射冲突 | 205 |
 
 ---
 
