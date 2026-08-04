@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Personal C++ data structures practice repo. Content is in Chinese (comments, variable names, `cout` messages). Active projects: singly linked lists (SingleList), stack & queue (Stack-Queue), vector/array (Array(vector)), set/map (Set-Map), string (String), hash table (HashTable). DoublyLinkedList is scaffolded but empty.
+Personal C++ data structures practice repo. Content is in Chinese (comments, variable names, `cout` messages). Active projects: singly linked lists (SingleList), stack & queue (Stack-Queue), vector/array (Array(vector)), set/map (Set-Map), string (String), hash table (HashTable), search (Search), sort (Sort). DoublyLinkedList is scaffolded but empty.
 
 Remote: `https://github.com/wenshuo-zh/DataStructure-Notes.git`
 
@@ -24,6 +24,8 @@ Remote: `https://github.com/wenshuo-zh/DataStructure-Notes.git`
   - `Set-Map/Set-Map.sln` — set/map associative containers
   - `String/String.sln` — string exercises
   - `HashTable/HashTable.sln` — hash table / unordered_set exercises
+  - `Search/Search.sln` — search algorithms (binary search, etc.)
+  - `Sort/Sort/Sort.sln` — sorting algorithms (bubble, select, insert, quick, merge, etc.)
 - **Configuration**: Debug x64 (default); Release x64 also available
 - **Critical**: Every `.cpp` file in a project defines its own `main()`. **Only one `.cpp` file can be compiled at a time.** To switch exercises in VS: right-click the unwanted `.cpp` files → Properties → "Excluded From Build" → Yes. Keep only the one you want active.
 - **Build output**: `<ProjectDir>/x64/Debug/<ProjectName>.exe`
@@ -56,6 +58,12 @@ msbuild String.sln /p:Configuration=Debug /p:Platform=x64
 
 # HashTable (HashTable\):
 msbuild HashTable.sln /p:Configuration=Debug /p:Platform=x64
+
+# Search (Search\):
+msbuild Search.sln /p:Configuration=Debug /p:Platform=x64
+
+# Sort (Sort\Sort\):
+msbuild Sort.sln /p:Configuration=Debug /p:Platform=x64
 ```
 
 Or from repo root with full paths:
@@ -111,6 +119,15 @@ HashTable/                  # Hash table exercises (active)
   HashTable.sln             # VS solution — open this
   HashTable.vcxproj
   *.cpp                     # 哈希表.cpp (基础演示), 13罗马数字转整数.cpp, 205同构字符串.cpp, 349两个数组的交集.cpp, 350两个数的交集2.cpp, 383赎金信.cpp
+Search/                     # Search algorithms (active)
+  Search.sln                # VS solution — open this
+  Search.vcxproj
+  *.cpp                     # 二分查找基础.cpp (基础演示)
+Sort/                       # Sorting algorithms (active)
+  Sort/                     # VS generated nested dir
+    Sort.sln                # VS solution — open this
+    Sort.vcxproj
+    *.cpp                   # 冒泡排序.cpp (基础演示)
 回放/                       # Screen recordings (.vep), not tracked in git
 ```
 
@@ -168,6 +185,10 @@ public:
 **String** — 使用 `std::string`。
 
 **HashTable** — `std::unordered_set`/`std::unordered_map`，底层哈希表。vs set/map：哈希表 O(1) 平均 vs 红黑树 O(log n)，无序 vs 自动排序；只关心快速查找/去重用 `unordered_set`，需要排序用 `set`。
+
+**Search** — 查找算法专题（二分查找、顺序查找等）。二分查找前提：数组有序。STL 内置 `binary_search`/`lower_bound`/`upper_bound`。手写时注意 `mid = left + (right - left) / 2` 防溢出。
+
+**Sort** — 排序算法专题（冒泡、选择、插入、快排、归并等）。基础演示用 `int nums[N]` + `main()` 自驱动。排序稳定性：冒泡/插入/归并稳定，选择/快排/堆排不稳定。STL `sort(begin, end)` 默认升序，底层内省排序（快排+堆排+插入混合）。
 
 ### 共用规则
 
