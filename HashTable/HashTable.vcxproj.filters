@@ -27,5 +27,11 @@
     <ClCompile Include="383赎金信.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="13罗马数字转整数.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="205同构字符串.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

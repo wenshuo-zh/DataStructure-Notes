@@ -114,11 +114,11 @@ Set-Map/                    # Set/map associative containers (active)
 String/                     # String exercises (active)
   String.sln                # VS solution — open this
   String.vcxproj
-  *.cpp                     # string.cpp (基础演示)
+  *.cpp                     # string.cpp (基础演示), 58最后一个单词的长度.cpp
 HashTable/                  # Hash table exercises (active)
   HashTable.sln             # VS solution — open this
   HashTable.vcxproj
-  *.cpp                     # 哈希表.cpp (基础演示), 13罗马数字转整数.cpp, 205同构字符串.cpp, 349两个数组的交集.cpp, 350两个数的交集2.cpp, 383赎金信.cpp
+  *.cpp                     # 哈希表.cpp (基础演示), 13罗马数字转整数.cpp, 205同构字符串.cpp, 349两个数组的交集.cpp, 350两个数的交集2.cpp, 383赎金信.cpp, 58最后一个单词的长度.cpp (未注册)
 Search/                     # Search algorithms (active)
   Search.sln                # VS solution — open this
   Search.vcxproj
@@ -127,7 +127,7 @@ Sort/                       # Sorting algorithms (active)
   Sort/                     # VS generated nested dir
     Sort.sln                # VS solution — open this
     Sort.vcxproj
-    *.cpp                   # 冒泡排序.cpp (基础演示)
+    *.cpp                   # 冒泡排序.cpp (基础演示), 选择排序.cpp
 回放/                       # Screen recordings (.vep), not tracked in git
 ```
 
@@ -209,6 +209,7 @@ public:
 | `Stack-Queue/用栈实现链表头插法.cpp` | Stack.vcxproj |
 | `Stack-Queue/Queue/deque双端队列.cpp` | Queue/Queue.vcxproj |
 | `Set-Map/26删除有序数组的重复项.cpp` | Set-Map.vcxproj |
+| `HashTable/58最后一个单词的长度.cpp` | HashTable.vcxproj |
 
 ### 检查未注册文件
 
@@ -229,6 +230,7 @@ grep -oP '(?<=Include=")[^"]+\.cpp' <ProjectDir>/<Project>.vcxproj
 - `021删除链表的倒数第n个节点.cpp` — 19 号的重复/变体，已在 vcxproj 中但可能是 WIP。
 - `206反转链表.cpp` — 用头插法反转，README 归类为"反转链表"。
 - `1两数之和.cpp` — LeetCode **1**（Two Sum），用 `std::map` 哈希法（O(n)），放在 Set-Map 项目中作为 map 应用演示。文件名不含"set/map"字样，README 应归于 Set-Map 分类。
+- `58最后一个单词的长度.cpp` — LeetCode **58**，同时存在于 `HashTable/` 和 `String/` 两个目录（两份副本）。已注册到 String.vcxproj，HashTable.vcxproj 未注册。
 
 ### 力扣题规范违规检查
 
