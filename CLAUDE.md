@@ -106,7 +106,7 @@ Stack-Queue/                # Stack & queue exercises (active)
 Array(vector)/              # Vector/array exercises (active)
   Array(vector).sln         # VS solution — open this
   Array(vector).vcxproj
-  *.cpp                     # vector.cpp (基础演示), 118杨辉三角.cpp, 26删除数组中重复的元素.cpp, 383赎金信.cpp (数组版)
+  *.cpp                     # vector.cpp (基础演示), 118杨辉三角.cpp, 26删除数组中重复的元素.cpp, 283移动零.cpp, 383赎金信.cpp (数组版)
 Set-Map/                    # Set/map associative containers (active)
   Set-Map.sln               # VS solution — open this
   Set-Map.vcxproj
@@ -122,7 +122,7 @@ HashTable/                  # Hash table exercises (active)
 Search/                     # Search algorithms (active)
   Search.sln                # VS solution — open this
   Search.vcxproj
-  *.cpp                     # 二分查找基础.cpp (基础演示)
+  *.cpp                     # 二分查找基础.cpp (基础演示), 35搜索插入位置.cpp
 Sort/                       # Sorting algorithms (active)
   Sort/                     # VS generated nested dir
     Sort.sln                # VS solution — open this

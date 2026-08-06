@@ -17,8 +17,9 @@
 | 哈希表 | 5 | 349、350、383、13、205 |
 | 字符串 | 1 | 58 |
 | 排序 | 1 | 88 |
+| 查找 | 1 | 35 |
 
-**力扣：20 题**
+**力扣：22 题**
 
 ---
 
@@ -75,11 +76,12 @@
 |------|------|------|
 | `vector.cpp` | vector 基础操作 | 初始化（列表/拷贝/memset）、增删（push_back/insert/pop_back/erase）、访问（at vs []） |
 
-### 双指针原地去重
+### 双指针
 
 | 题号 | 题目 | 文件 | 技巧 |
 |------|------|------|------|
 | [26](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/) | 删除有序数组中的重复项 | `26删除数组中重复的元素.cpp` | 快慢指针：slow 指向已去重末尾，fast 扫描，不同则 `nums[++slow] = nums[fast]` |
+| [283](https://leetcode.cn/problems/move-zeroes/) | 移动零 | `283移动零.cpp` | slow 指向非零区末尾，fast 扫描，非零则覆盖到 slow 位置；最后 `memset` 将 slow 之后全置 0 |
 
 ### 杨辉三角
 
@@ -175,6 +177,12 @@
 | 文件 | 内容 | 技巧 |
 |------|------|------|
 | `二分查找基础.cpp` | 二分查找基础操作 | 手写版 + STL `binary_search`/`lower_bound`/`upper_bound` 对比；`mid = left + (right-left)/2` 防溢出 |
+
+### 二分查找应用
+
+| 题号 | 题目 | 文件 | 技巧 |
+|------|------|------|------|
+| [35](https://leetcode.cn/problems/search-insert-position/) | 搜索插入位置 | `35搜索插入位置.cpp` | 二分查找找 target，找不到则返回 `left`（即插入位置） |
 
 ---
 

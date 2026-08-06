@@ -27,5 +27,8 @@
     <ClCompile Include="383赎金信.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="283移动零.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
