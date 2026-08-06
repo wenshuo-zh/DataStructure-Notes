@@ -19,10 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="冒泡排序.cpp" />
-    <ClCompile Include="选择排序.cpp" />
-    <ClCompile Include="插入排序.cpp" />
-    <ClCompile Include="计数排序.cpp" />
+    <ClCompile Include="归并排序.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

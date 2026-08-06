@@ -127,7 +127,7 @@ Sort/                       # Sorting algorithms (active)
   Sort/                     # VS generated nested dir
     Sort.sln                # VS solution — open this
     Sort.vcxproj
-    *.cpp                   # 冒泡排序.cpp, 选择排序.cpp, 插入排序.cpp, 计数排序.cpp
+    *.cpp                   # 冒泡排序.cpp, 选择排序.cpp, 插入排序.cpp, 计数排序.cpp, 归并排序.cpp, 88合并两个有序数组.cpp
 回放/                       # Screen recordings (.vep), not tracked in git
 ```
 
