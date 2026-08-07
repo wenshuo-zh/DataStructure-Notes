@@ -33,5 +33,8 @@
     <ClCompile Include="530二叉搜索树的最小绝对差.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="LCR149彩灯装饰记录I.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

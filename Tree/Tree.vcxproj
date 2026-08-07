@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="530二叉搜索树的最小绝对差.cpp" />
+    <ClCompile Include="LCR149彩灯装饰记录I.cpp" />
     <ClCompile Include="中序遍历.cpp" />
     <ClCompile Include="先序遍历.cpp" />
     <ClCompile Include="后序遍历.cpp" />

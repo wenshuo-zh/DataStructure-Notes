@@ -145,7 +145,7 @@ Sort/                       # Sorting algorithms (active)
 Tree/                       # Binary tree (active)
   Tree.sln                  # VS solution — open this
   Tree.vcxproj
-  *.cpp                     # 树基础概念.cpp (基础演示), 先序遍历.cpp, 中序遍历.cpp, 后序遍历.cpp, 层序遍历.cpp (基础演示), 530二叉搜索树的最小绝对差.cpp
+  *.cpp                     # 树基础概念.cpp (基础演示), 先序遍历.cpp, 中序遍历.cpp, 后序遍历.cpp, 层序遍历.cpp (基础演示), 530二叉搜索树的最小绝对差.cpp, LCR149彩灯装饰记录I.cpp
 回放/                       # Screen recordings (.vep), not tracked in git
 ```
 
