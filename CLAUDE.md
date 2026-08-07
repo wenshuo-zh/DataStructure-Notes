@@ -26,6 +26,7 @@ Remote: `https://github.com/wenshuo-zh/DataStructure-Notes.git`
   - `HashTable/HashTable.sln` — hash table / unordered_set exercises
   - `Search/Search.sln` — search algorithms (binary search, etc.)
   - `Sort/Sort/Sort.sln` — sorting algorithms (bubble, select, insert, quick, merge, etc.)
+- `Tree/Tree.sln` — binary tree exercises (traversal, properties, BST)
 - **Configuration**: Debug x64 (default); Release x64 also available
 - **Critical**: Every `.cpp` file in a project defines its own `main()`. **Only one `.cpp` file can be compiled at a time.** To switch exercises in VS: right-click the unwanted `.cpp` files → Properties → "Excluded From Build" → Yes. Keep only the one you want active.
 - **Build output**: `<ProjectDir>/x64/Debug/<ProjectName>.exe`
@@ -64,6 +65,9 @@ msbuild Search.sln /p:Configuration=Debug /p:Platform=x64
 
 # Sort (Sort\Sort\):
 msbuild Sort.sln /p:Configuration=Debug /p:Platform=x64
+
+# Tree (Tree\):
+msbuild Tree.sln /p:Configuration=Debug /p:Platform=x64
 ```
 
 Or from repo root with full paths:
@@ -75,6 +79,16 @@ msbuild LinkedList\SingleList\SingleList.sln /p:Configuration=Debug /p:Platform=
 ### Adding a new .cpp file (outside VS)
 
 When adding a `.cpp` file without Visual Studio, you must manually edit the `.vcxproj` file — add a `<ClCompile Include="新文件.cpp" />` entry inside the existing `<ItemGroup>` that contains the other `<ClCompile>` entries. VS would do this automatically via "Add → Existing Item", but CLI users must edit the XML directly.
+
+### 新增文件 Checklist
+
+每次新建 `.cpp` 文件后，按顺序完成以下三步：
+
+1. **注册到 vcxproj**：编辑对应项目的 `.vcxproj`，在 `<ItemGroup>` 中添加 `<ClCompile Include="新文件.cpp" />`
+2. **更新 README.md**：新力扣题加入对应分类表格 + 更新进度统计数字；新基础演示也要反映
+3. **更新 CLAUDE.md**：如果暂不注册 vcxproj，把文件加入"当前已知未注册文件"清单
+
+> 如果只在 VS 中"添加 → 现有项"，VS 会自动完成步骤 1。CLI 创建的文件必须手动编辑 vcxproj。
 
 ### Adding a new project (e.g., a new data structure)
 
@@ -128,6 +142,10 @@ Sort/                       # Sorting algorithms (active)
     Sort.sln                # VS solution — open this
     Sort.vcxproj
     *.cpp                   # 冒泡排序.cpp, 选择排序.cpp, 插入排序.cpp, 计数排序.cpp, 归并排序.cpp, 88合并两个有序数组.cpp
+Tree/                       # Binary tree (active)
+  Tree.sln                  # VS solution — open this
+  Tree.vcxproj
+  *.cpp                     # 树基础概念.cpp (基础演示), 先序遍历.cpp, 中序遍历.cpp, 后序遍历.cpp, 层序遍历.cpp (基础演示), 530二叉搜索树的最小绝对差.cpp
 回放/                       # Screen recordings (.vep), not tracked in git
 ```
 
@@ -190,6 +208,8 @@ public:
 
 **Sort** — 排序算法专题（冒泡、选择、插入、快排、归并等）。基础演示用 `int nums[N]` + `main()` 自驱动。排序稳定性：冒泡/插入/归并稳定，选择/快排/堆排不稳定。STL `sort(begin, end)` 默认升序，底层内省排序（快排+堆排+插入混合）。
 
+**Tree** — 二叉树专题。`struct TreeNode { int val; TreeNode *left, *right; }`。基础演示手动建树，演示递归前/中/后序遍历 + 层序遍历（queue）+ 内存释放（后序删除）。递归是核心思想：明确终止条件（`nullptr`）+ 分解为左右子树子问题。遍历分递归版和迭代版（栈模拟），各有适用场景。BST（二叉搜索树）性质：左 < 根 < 右，中序遍历得升序序列。
+
 ### 共用规则
 
 - 中文注释解释算法步骤
@@ -210,6 +230,11 @@ public:
 | `Stack-Queue/Queue/deque双端队列.cpp` | Queue/Queue.vcxproj |
 | `Set-Map/26删除有序数组的重复项.cpp` | Set-Map.vcxproj |
 | `HashTable/58最后一个单词的长度.cpp` | HashTable.vcxproj |
+| `Sort/Sort/冒泡排序.cpp` | Sort.vcxproj |
+| `Sort/Sort/选择排序.cpp` | Sort.vcxproj |
+| `Sort/Sort/插入排序.cpp` | Sort.vcxproj |
+| `Sort/Sort/计数排序.cpp` | Sort.vcxproj |
+| `Sort/Sort/88合并两个有序数组.cpp` | Sort.vcxproj |
 
 ### 检查未注册文件
 

@@ -92,6 +92,9 @@ vcpkg_installed/
 # debug information files
 *.dwo
 
+# Claude Code local preferences (never upload)
+.claude/settings*
+
 # test output & cache
 Testing/
 .cache/
