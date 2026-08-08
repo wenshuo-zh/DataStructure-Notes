@@ -26,6 +26,7 @@
     <ClCompile Include="后序遍历.cpp" />
     <ClCompile Include="层序遍历.cpp" />
     <ClCompile Include="树基础概念.cpp" />
+    <ClCompile Include="自平衡二叉搜索树.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -112,7 +112,7 @@ LinkedList/DoublyLinkedList/ # Doubly linked list (scaffold only — no .cpp fil
 Stack-Queue/                # Stack & queue exercises (active)
   Stack.sln                 # VS solution for stack
   Stack.vcxproj
-  *.cpp                     # 栈.cpp (基础演示, 未注册), 用栈实现链表头插法.cpp (未注册), 232用栈实现队列.cpp
+  *.cpp                     # 栈.cpp (基础演示), 用栈实现链表头插法.cpp (未注册), 232用栈实现队列.cpp
   Queue/                    # Queue sub-project
     Queue.sln               # VS solution for queue
     Queue.vcxproj
@@ -141,11 +141,11 @@ Sort/                       # Sorting algorithms (active)
   Sort/                     # VS generated nested dir
     Sort.sln                # VS solution — open this
     Sort.vcxproj
-    *.cpp                   # 冒泡排序.cpp, 选择排序.cpp, 插入排序.cpp, 计数排序.cpp, 归并排序.cpp, 88合并两个有序数组.cpp
+    *.cpp                   # 归并排序.cpp (已注册), 冒泡排序.cpp (未注册), 选择排序.cpp (未注册), 插入排序.cpp (未注册), 计数排序.cpp (未注册), 快速排序.cpp (未注册), 88合并两个有序数组.cpp (未注册)
 Tree/                       # Binary tree (active)
   Tree.sln                  # VS solution — open this
   Tree.vcxproj
-  *.cpp                     # 树基础概念.cpp (基础演示), 先序遍历.cpp, 中序遍历.cpp, 后序遍历.cpp, 层序遍历.cpp (基础演示), 530二叉搜索树的最小绝对差.cpp, LCR149彩灯装饰记录I.cpp
+  *.cpp                     # 树基础概念.cpp (基础演示), 先序遍历.cpp, 中序遍历.cpp, 后序遍历.cpp, 层序遍历.cpp (基础演示), 自平衡二叉搜索树.cpp (AVL基础演示), 530二叉搜索树的最小绝对差.cpp, LCR149彩灯装饰记录I.cpp, 100相同的树.cpp (未注册), 104二叉树的最大深度.cpp (未注册), 226反转二叉树.cpp (未注册), 701二叉搜索树的插入操作.cpp (未注册)
 回放/                       # Screen recordings (.vep), not tracked in git
 ```
 
@@ -194,7 +194,7 @@ public:
 
 **Stack-Queue** — `Stack.sln` 管理栈相关 `.cpp`，`Queue/Queue.sln` 管理队列相关 `.cpp`。使用 STL 容器（`std::stack`、`std::queue`、`std::deque`）。文件名含"链表"/"头插法"说明是用栈/队列操作链表。
 
-> ⚠️ Stack.vcxproj 只注册了 `232用栈实现队列.cpp`，缺少 `栈.cpp`、`用栈实现链表头插法.cpp`；Queue.vcxproj 缺少 `deque双端队列.cpp`。需补注册。
+> ⚠️ Stack.vcxproj 缺少 `用栈实现链表头插法.cpp`；Queue.vcxproj 缺少 `deque双端队列.cpp`。需补注册。
 
 **Array(vector)** — 使用 `std::vector`。教学注释注明 API 用法（`push_back`/`insert`/`erase`/`at` vs `[]` 的区别等）。
 
@@ -208,7 +208,7 @@ public:
 
 **Sort** — 排序算法专题（冒泡、选择、插入、快排、归并等）。基础演示用 `int nums[N]` + `main()` 自驱动。排序稳定性：冒泡/插入/归并稳定，选择/快排/堆排不稳定。STL `sort(begin, end)` 默认升序，底层内省排序（快排+堆排+插入混合）。
 
-**Tree** — 二叉树专题。`struct TreeNode { int val; TreeNode *left, *right; }`。基础演示手动建树，演示递归前/中/后序遍历 + 层序遍历（queue）+ 内存释放（后序删除）。递归是核心思想：明确终止条件（`nullptr`）+ 分解为左右子树子问题。遍历分递归版和迭代版（栈模拟），各有适用场景。BST（二叉搜索树）性质：左 < 根 < 右，中序遍历得升序序列。
+**Tree** — 二叉树专题。`struct TreeNode { int val; TreeNode *left, *right; }`。基础演示手动建树，演示递归前/中/后序遍历 + 层序遍历（queue）+ 内存释放（后序删除）。递归是核心思想：明确终止条件（`nullptr`）+ 分解为左右子树子问题。遍历分递归版和迭代版（栈模拟），各有适用场景。BST（二叉搜索树）性质：左 < 根 < 右，中序遍历得升序序列。AVL（自平衡二叉搜索树）通过旋转维持平衡因子 ∈ {-1,0,1}，确保 O(log n) 操作。
 
 ### 共用规则
 
@@ -225,7 +225,6 @@ public:
 | 文件 | 应注册到 |
 |------|----------|
 | `LinkedList/SingleList/203移除链表元素.cpp` | SingleList.vcxproj |
-| `Stack-Queue/栈.cpp` | Stack.vcxproj |
 | `Stack-Queue/用栈实现链表头插法.cpp` | Stack.vcxproj |
 | `Stack-Queue/Queue/deque双端队列.cpp` | Queue/Queue.vcxproj |
 | `Set-Map/26删除有序数组的重复项.cpp` | Set-Map.vcxproj |
@@ -234,7 +233,12 @@ public:
 | `Sort/Sort/选择排序.cpp` | Sort.vcxproj |
 | `Sort/Sort/插入排序.cpp` | Sort.vcxproj |
 | `Sort/Sort/计数排序.cpp` | Sort.vcxproj |
+| `Sort/Sort/快速排序.cpp` | Sort.vcxproj |
 | `Sort/Sort/88合并两个有序数组.cpp` | Sort.vcxproj |
+| `Tree/100相同的树.cpp` | Tree.vcxproj |
+| `Tree/104二叉树的最大深度.cpp` | Tree.vcxproj |
+| `Tree/226反转二叉树.cpp` | Tree.vcxproj |
+| `Tree/701二叉搜索树的插入操作.cpp` | Tree.vcxproj |
 
 ### 检查未注册文件
 

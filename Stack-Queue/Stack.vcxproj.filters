@@ -18,5 +18,8 @@
     <ClCompile Include="232用栈实现队列.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="栈.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
